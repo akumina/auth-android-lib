@@ -1,6 +1,10 @@
 plugins {
     id 'com.android.library'
 }
+
+group = 'com.github.akumina'
+version = '1.0'
+
 android {
     namespace 'com.akumina.android.auth.akuminalib'
     compileSdk 33
@@ -40,4 +44,18 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                groupId = 'com.github.akumina'
+                artifactId = 'android-auth-lib'
+                version = '1.0'
+                artifact(bundleReleaseAar)
+            }
+        }
+    }
 }

@@ -11,3 +11,5 @@ it, simply add the following line to your build gradle:
 ## License
 
 AkuminaAuthAndroidLib is available under the MIT license. See the LICENSE file for more info.
+
+[![](https://jitpack.io/v/akumina/auth-android-lib.svg)](https://jitpack.io/#akumina/auth-android-lib)
