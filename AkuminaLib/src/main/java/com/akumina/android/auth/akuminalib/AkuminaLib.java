@@ -12,7 +12,7 @@ public final class AkuminaLib {
         logger.info("Loading Akumina Lib");
     }
 
-    public static   AkuminaLib getInstance() {
+    public static  AkuminaLib getInstance() {
         if (akuminaLib == null) {
             akuminaLib = new AkuminaLib();
         }
