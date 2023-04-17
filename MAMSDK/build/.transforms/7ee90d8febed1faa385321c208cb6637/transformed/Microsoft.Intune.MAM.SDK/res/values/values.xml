@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <color name="intune_default_background">#EBEBEB</color>
+    <color name="intune_default_button_color">#024D89</color>
+    <dimen name="offline_startup_app_icon_container_inset">11dp</dimen>
+    <string name="intune_account_disallowed" ns1:ignore="UnusedResources">Your organization does not allow this account to sign in to this app.</string>
+    <string name="intune_account_disallowed_fmt" ns1:ignore="UnusedResources">Your organization does not allow this account to sign in to this app.\n\n%1$s will not be added.</string>
+    <string name="intune_account_removed_fmt" ns1:ignore="UnusedResources">Your organization does not allow this account to sign in to this app.\n\n%1$s will be removed.</string>
+    <string name="intune_allowed_account_explanation" ns1:ignore="UnusedResources">Your organization only allows certain accounts to sign in to this app.</string>
+    <string name="intune_allowed_accounts_description" ns1:ignore="UnusedResources">Only the listed accounts may sign-in.</string>
+    <string name="intune_allowed_accounts_explanation_all_added" ns1:ignore="UnusedResources">All accounts allowed by your organization have already been signed in.</string>
+    <string name="intune_allowed_accounts_title" ns1:ignore="UnusedResources">Allowed Accounts</string>
+    <string name="wg_offline_branding_managed_by">Managed by your organization</string>
+    <string name="wg_offline_cancel">Cancel</string>
+    <string name="wg_offline_close">Close</string>
+    <string name="wg_offline_get_the_app">Go to store</string>
+    <string name="wg_offline_go_back">Go back</string>
+    <string name="wg_offline_initialization_failure">There was an issue launching your app. Try updating the app or the Microsoft Intune Company Portal app. If you need help, contact your IT administrator.</string>
+    <string name="wg_offline_learn_more">Learn More</string>
+    <string name="wg_offline_mamca_failed_message">This app could not be protected because a connection with the service did not complete. Please try again.</string>
+    <string name="wg_offline_mamca_failed_title">Try Again</string>
+    <string name="wg_offline_must_restart">Your IT department is now helping you protect work or school data in this app. Restart the app to continue.</string>
+    <string name="wg_offline_ok">OK</string>
+    <string name="wg_offline_policy_required_message">This app has not been set up for you to use. Contact your IT administrator for help.</string>
+    <string name="wg_offline_sharing_blocked_dialog_text">Your organization does not allow this sharing.</string>
+    <string name="wg_offline_sharing_blocked_dialog_title">Sharing not allowed</string>
+    <string name="wg_offline_show_diagnostics_message">Diagnostic info is not available for this device. Contact your IT administrator for help.\n\nEnrollment Status: %1$s.</string>
+    <string name="wg_offline_ssp_install_required_message">To use your work or school account with this app, you must install the Microsoft Intune Company Portal app. Tap “Go to store” to continue.</string>
+    <string name="wg_offline_ssp_install_required_message_ngms">To use your work or school account with this app, you must install the Microsoft Intune Company Portal app. Choose “Learn More” to determine where you can get the Company Portal app from.</string>
+    <string name="wg_offline_ssp_removed_notify_system_wipe">Your organization has removed its data associated with this app because the Microsoft Intune Company Portal data or application was removed. This application will now close. To reconnect, you must sign-in with your work or school account.</string>
+    <string name="wg_offline_ssp_removed_notify_wipe">Your organization has removed its data associated with this app because the Microsoft Intune Company Portal data or application was removed. To reconnect, you must sign-in with your work or school account.</string>
+    <style name="MAMActivityBaseTheme" ns1:keep="@style/MAMActivityBaseTheme" parent="@android:style/Theme.Holo.Light"/>
+    <style name="MAMButton" ns1:keep="@style/MAMButton" parent="@android:style/Widget.Holo.Button.Borderless">
+    <item name="android:textColor">@android:color/black</item>
+  </style>
+    <style name="MAMDialogTheme" ns1:keep="@style/MAMDialogTheme" parent="@android:style/Theme.Holo.Light.Dialog"/>
+    <style name="MAMDialogWithTrasparentBackground" ns1:keep="@style/MAMDialogWithTrasparentBackground" parent="@android:style/Theme.Holo.Light.Dialog">
+    <item name="android:windowBackground">@android:color/transparent</item>
+    <item name="android:colorBackgroundCacheHint">@null</item>
+    <item name="android:windowIsTranslucent">true</item>
+    <item name="android:windowAnimationStyle">@android:style/Animation</item>
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowContentOverlay">@null</item>
+  </style>
+</resources>

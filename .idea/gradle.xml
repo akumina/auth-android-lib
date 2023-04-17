@@ -12,6 +12,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/AkuminaLib" />
+            <option value="$PROJECT_DIR$/MAMSDK" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>

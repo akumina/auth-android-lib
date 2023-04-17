@@ -10,7 +10,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
+        maven {
+            url 'https://jitpack.io'
+            name 'jitpack'
+        }
         maven {
             url 'https://pkgs.dev.azure.com/MicrosoftDeviceSDK/DuoSDK-Public/_packaging/Duo-SDK-Feed/maven/v1'
             name 'Duo-SDK-Feed'
@@ -20,3 +23,4 @@ dependencyResolutionManagement {
 rootProject.name = "AkuminaAndroidLib"
 include ':app'
 include ':AkuminaLib'
+include ':MAMSDK'

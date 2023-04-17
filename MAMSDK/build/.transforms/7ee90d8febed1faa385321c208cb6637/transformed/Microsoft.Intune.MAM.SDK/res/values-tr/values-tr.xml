@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intune_account_disallowed">Kuruluşunuz bu uygulamada oturum açmak için bu hesaba izin vermez.</string>
+    <string name="intune_account_disallowed_fmt">Kuruluşunuz bu hesabın bu uygulamaya kaydolmasına izin vermiyor.\n\n%1$s eklenmeyecek.</string>
+    <string name="intune_account_removed_fmt">Kuruluşunuz bu hesabın bu uygulamaya kaydolmasına izin vermiyor.\n\n%1$s kaldırılacak.</string>
+    <string name="intune_allowed_account_explanation">Kuruluşunuz bu uygulamada oturum açmak için yalnızca belirli hesaplara izin verir.</string>
+    <string name="intune_allowed_accounts_description">Yalnızca listelenen hesaplar oturum açabilir.</string>
+    <string name="intune_allowed_accounts_explanation_all_added">Kuruluşunuz tarafından izin verilen tüm hesaplarla zaten oturum açılmış.</string>
+    <string name="intune_allowed_accounts_title">İzin Verilen Hesaplar</string>
+    <string name="wg_offline_branding_managed_by">Kuruluşunuz tarafından yönetilen</string>
+    <string name="wg_offline_cancel">İptal</string>
+    <string name="wg_offline_close">Kapat</string>
+    <string name="wg_offline_get_the_app">Mağazaya git</string>
+    <string name="wg_offline_go_back">Geri dön</string>
+    <string name="wg_offline_initialization_failure">Uygulamanız başlatılırken bir sorun oluştu. Uygulamayı veya Microsoft Intune Şirket Portalı uygulamasını güncelleştirmeyi deneyin. Yardıma ihtiyacınız olursa BT yöneticinize başvurun.</string>
+    <string name="wg_offline_learn_more">Daha Fazla Bilgi Edinin</string>
+    <string name="wg_offline_mamca_failed_message">Hizmet ile bağlantı kurma tamamlanmadığı için bu uygulama korunamadı. Lütfen yeniden deneyin.</string>
+    <string name="wg_offline_mamca_failed_title">Yeniden Dene</string>
+    <string name="wg_offline_must_restart">BT departmanınız artık bu uygulamadaki iş veya okul verilerini korumanıza yardımcı oluyor. Devam etmek için uygulamayı yeniden başlatın.</string>
+    <string name="wg_offline_ok">Tamam</string>
+    <string name="wg_offline_policy_required_message">Bu uygulama, kullanmanız için ayarlanmamış. Yardım için BT yöneticinize danışın.</string>
+    <string name="wg_offline_sharing_blocked_dialog_text">Kuruluşunuz bu paylaşıma izin vermiyor.</string>
+    <string name="wg_offline_sharing_blocked_dialog_title">Paylaşıma izin verilmiyor</string>
+    <string name="wg_offline_show_diagnostics_message">Bu cihaz için tanılama bilgileri kullanılamıyor. Yardım için BT yöneticiniz ile iletişime geçin.\n\nKayıt Durumu: %1$s.</string>
+    <string name="wg_offline_ssp_install_required_message">İş veya okul hesabınızı bu uygulamayla kullanabilmeniz için Microsoft Intune Şirket Portalı uygulamasını yüklemeniz gerekir. Devam etmek için “Mağazaya git” seçeneğine dokunun.</string>
+    <string name="wg_offline_ssp_install_required_message_ngms">İş veya okul hesabınızı bu uygulamayla kullanmak için Microsoft Intune Şirket Portalı uygulamasını yüklemeniz gerekir. Şirket Portalı uygulamasını nereden edinebileceğinizi belirlemek için “Daha Fazla Bilgi Edinin” seçeneğine tıklayın.</string>
+    <string name="wg_offline_ssp_removed_notify_system_wipe">Microsoft Intune Şirket Portalı verileri veya uygulaması kaldırıldığından kuruluşunuz bu uygulamayla ilişkili verileri kaldırdı. Bu uygulama şimdi kapatılacak. Yeniden bağlanmak için iş veya okul hesabınızla oturum açmalısınız.</string>
+    <string name="wg_offline_ssp_removed_notify_wipe">Microsoft Intune Şirket Portalı verileri veya uygulaması kaldırıldığı için kuruluşunuz bu uygulamayla ilişkili olan verileri kaldırdı. Yeniden bağlanmak için iş veya okul hesabınızla oturum açmanız gerekir.</string>
+</resources>

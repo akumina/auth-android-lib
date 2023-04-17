@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intune_account_disallowed">このアカウントはこのアプリへのサインインを組織から許可されていません。</string>
+    <string name="intune_account_disallowed_fmt">このアカウントはこのアプリへのサインインを組織から許可されていません。\n\n%1$s は追加されません。</string>
+    <string name="intune_account_removed_fmt">このアカウントはこのアプリへのサインインを組織から許可されていません。\n\n%1$s が削除されます。</string>
+    <string name="intune_allowed_account_explanation">特定のアカウントのみがこのアプリへのサインインを組織から許可されています。</string>
+    <string name="intune_allowed_accounts_description">一覧表示されているアカウントのみがサインイン可能です。</string>
+    <string name="intune_allowed_accounts_explanation_all_added">組織から許可されているすべてのアカウントが既にサインインしています。</string>
+    <string name="intune_allowed_accounts_title">許可されたアカウント</string>
+    <string name="wg_offline_branding_managed_by">組織によって管理されています</string>
+    <string name="wg_offline_cancel">キャンセル</string>
+    <string name="wg_offline_close">終値</string>
+    <string name="wg_offline_get_the_app">ストアにアクセス</string>
+    <string name="wg_offline_go_back">戻る</string>
+    <string name="wg_offline_initialization_failure">アプリの起動時にイシューが発生しました。該当するアプリまたは Microsoft Intune ポータル サイト アプリを更新してください。サポートが必要な場合は、IT 管理者にご連絡ください。</string>
+    <string name="wg_offline_learn_more">詳細情報</string>
+    <string name="wg_offline_mamca_failed_message">このサービスとの接続が完了しなかったために、このアプリを保護できませんでした。もう一度お試しください。</string>
+    <string name="wg_offline_mamca_failed_title">もう一度お試しください</string>
+    <string name="wg_offline_must_restart">現在、このアプリにある職場または学校のデータの保護について IT 部門より支援を受けています。続行するには、アプリを再起動してください。</string>
+    <string name="wg_offline_ok">OK</string>
+    <string name="wg_offline_policy_required_message">このアプリの設定により、使用することができません。IT 管理者にお問い合わせください。</string>
+    <string name="wg_offline_sharing_blocked_dialog_text">お客様の組織では、この共有は許可されていません。</string>
+    <string name="wg_offline_sharing_blocked_dialog_title">共有不可</string>
+    <string name="wg_offline_show_diagnostics_message">このデバイスでは、診断情報を利用できません。サポートが必要な場合は、IT 管理者にお問い合わせください。 \n\n 登録の状態: %1$s。</string>
+    <string name="wg_offline_ssp_install_required_message">このアプリで職場または学校アカウントを使用するには、Microsoft Intune ポータル サイト アプリをインストールする必要があります。続行するには、[ストアに移動] をタップしてください。</string>
+    <string name="wg_offline_ssp_install_required_message_ngms">このアプリで職場または学校アカウントを使用するには、Microsoft Intune ポータル サイト アプリをインストールする必要があります。[詳細情報] を選択して、ポータル サイト アプリを取得できる場所を決定します。</string>
+    <string name="wg_offline_ssp_removed_notify_system_wipe">Microsoft Intune ポータル サイトのデータまたはアプリが削除されたため、組織により、このアプリケーション所に関連付けられているデータが削除されました。これで、このアプリケーションは終了します。再接続するには、職場または学校アカウントでサインインする必要があります。</string>
+    <string name="wg_offline_ssp_removed_notify_wipe">Microsoft Intune ポータル サイトのデータまたはアプリケーションが削除されたため、組織により、このアプリに関連付けられているデータが削除されました。再接続するには、職場または学校アカウントでサインインする必要があります。</string>
+</resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intune_account_disallowed">L\'organizzazione non consente a questo account di accedere all\'app.</string>
+    <string name="intune_account_disallowed_fmt">L\'organizzazione non consente a questo account di accedere all\'app.\n\n%1$s non verrà aggiunto.</string>
+    <string name="intune_account_removed_fmt">L\'organizzazione non consente a questo account di accedere all\'app.\n\n%1$s verrà rimosso.</string>
+    <string name="intune_allowed_account_explanation">L\'organizzazione consente solo a determinati account di accedere a questa app.</string>
+    <string name="intune_allowed_accounts_description">Solo gli account elencati possono accedere.</string>
+    <string name="intune_allowed_accounts_explanation_all_added">Tutti gli account consentiti dall\'organizzazione hanno già effettuato l\'accesso.</string>
+    <string name="intune_allowed_accounts_title">Account consentiti</string>
+    <string name="wg_offline_branding_managed_by">Gestita dall\'organizzazione</string>
+    <string name="wg_offline_cancel">Annulla</string>
+    <string name="wg_offline_close">Chiusura</string>
+    <string name="wg_offline_get_the_app">Vai allo Store</string>
+    <string name="wg_offline_go_back">Indietro</string>
+    <string name="wg_offline_initialization_failure">Si è verificato un problema durante l\'avvio dell\'app. Provare ad aggiornare l\'app o l\'app Portale aziendale di Microsoft Intune. Se necessario, contattare l\'amministratore IT per ottenere assistenza.</string>
+    <string name="wg_offline_learn_more">Altre informazioni</string>
+    <string name="wg_offline_mamca_failed_message">Non è stato possibile proteggere l\'app a causa del mancato completamento di una connessione al servizio. Riprovare.</string>
+    <string name="wg_offline_mamca_failed_title">Riprova</string>
+    <string name="wg_offline_must_restart">La protezione dei dati aziendali o dell\'istituto di istruzione in questa app è ora gestita dal reparto IT. Per continuare, riavviare l\'app.</string>
+    <string name="wg_offline_ok">OK</string>
+    <string name="wg_offline_policy_required_message">Questa app non è stata configurata per l\'uso da parte dell\'utente. Contattare l\'amministratore IT per assistenza.</string>
+    <string name="wg_offline_sharing_blocked_dialog_text">L\'organizzazione non consente questa condivisione.</string>
+    <string name="wg_offline_sharing_blocked_dialog_title">La condivisione non è consentita</string>
+    <string name="wg_offline_show_diagnostics_message">Le informazioni di diagnostica non sono disponibili per questo dispositivo. Per assistenza, contattare l\'amministratore IT.\n\nStato di registrazione: %1$s.</string>
+    <string name="wg_offline_ssp_install_required_message">Per usare l\'account aziendale o dell\'istituto di istruzione con questa app, è necessario installare l\'app Portale aziendale di Microsoft Intune. Toccare “Vai allo Store” per continuare.</string>
+    <string name="wg_offline_ssp_install_required_message_ngms">Per usare l\'account aziendale o dell\'istituto di istruzione con questa app, è necessario installare l\'app Portale aziendale Microsoft Intune. Scegliere \"Altre informazioni\" per sapere da dove è possibile scaricare l\'app Portale aziendale.</string>
+    <string name="wg_offline_ssp_removed_notify_system_wipe">L\'organizzazione ha rimosso i dati associati a questa app perché i dati del Portale aziendale di Microsoft Intune o l\'applicazione sono stati rimossi. L\'applicazione verrà chiusa. Per riconnettersi è necessario accedere con l\'account aziendale o dell\'istituto di istruzione.</string>
+    <string name="wg_offline_ssp_removed_notify_wipe">L\'organizzazione ha rimosso i dati associati a questa app perché i dati del Portale aziendale di Microsoft Intune o l\'applicazione sono stati rimossi. Per riconnettersi è necessario accedere con l\'account aziendale o dell\'istituto di istruzione.</string>
+</resources>

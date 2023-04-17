@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intune_account_disallowed">Vaša tvrtka ili ustanova ne dopušta tom računu prijavu u aplikaciju.</string>
+    <string name="intune_account_disallowed_fmt">Vaša tvrtka ili ustanova ne dopušta tom računu prijavu u aplikaciju.\n\nAplikacija %1$s neće se dodati.</string>
+    <string name="intune_account_removed_fmt">Vaša tvrtka ili ustanova ne dopušta tom računu prijavu u aplikaciju.\n\n%1$s će se ukloniti.</string>
+    <string name="intune_allowed_account_explanation">Vaša tvrtka ili ustanova dopušta prijavu u aplikaciju samo određenim računima.</string>
+    <string name="intune_allowed_accounts_description">Prijaviti se mogu samo računi navedeni na popisu.</string>
+    <string name="intune_allowed_accounts_explanation_all_added">Svi računi koje je omogućila tvrtka ili ustanova već su prijavljeni.</string>
+    <string name="intune_allowed_accounts_title">Dopušteni računi</string>
+    <string name="wg_offline_branding_managed_by">Upravlja vaša tvrtka ili ustanova</string>
+    <string name="wg_offline_cancel">Odustani</string>
+    <string name="wg_offline_close">Zatvori</string>
+    <string name="wg_offline_get_the_app">Idi u trgovinu</string>
+    <string name="wg_offline_go_back">Idi natrag</string>
+    <string name="wg_offline_initialization_failure">Prilikom pokretanja aplikacije došlo je do problema. Ažurirajte aplikaciju ili aplikaciju Microsoft Intune Company Portal. Ako vam je potrebna pomoć, obratite se IT administratoru.</string>
+    <string name="wg_offline_learn_more">Dodatne informacije</string>
+    <string name="wg_offline_mamca_failed_message">Aplikaciju nije moguće zaštititi jer nije dovršeno povezivanje sa servisom. Pokušajte ponovno.</string>
+    <string name="wg_offline_mamca_failed_title">Pokušajte ponovno</string>
+    <string name="wg_offline_must_restart">IT odjel sada vam pomaže da zaštitite podatke tvrtke ili obrazovne ustanove u aplikaciji. Da biste nastavili, ponovno pokrenite aplikaciju.</string>
+    <string name="wg_offline_ok">U redu</string>
+    <string name="wg_offline_policy_required_message">Aplikacija nije postavljena tako da je možete koristiti. Zatražite pomoć od IT administratora.</string>
+    <string name="wg_offline_sharing_blocked_dialog_text">Tvrtka ili ustanova ne dopušta to zajedničko korištenje.</string>
+    <string name="wg_offline_sharing_blocked_dialog_title">Zajedničko korištenje nije dopušteno</string>
+    <string name="wg_offline_show_diagnostics_message">Dijagnostički podaci nisu dostupni za ovaj uređaj. Obratite se IT administratoru za pomoć.\n\nStatus registracije: %1$s.</string>
+    <string name="wg_offline_ssp_install_required_message">Da biste koristili račun tvrtke ili obrazovne ustanove s ovom aplikacijom, morate instalirati aplikaciju Microsoft Intune Company Portal. Dodirnite \"Idi u trgovinu\" da biste nastavili.</string>
+    <string name="wg_offline_ssp_install_required_message_ngms">Da biste s ovom aplikacijom koristili račun tvrtke ili obrazovne ustanove, morate instalirati aplikaciju Microsoft Intune Company Portal. Odaberite „Saznajte više“ da biste odredili odakle možete nabaviti Company Portal aplikaciju.</string>
+    <string name="wg_offline_ssp_removed_notify_system_wipe">Vaša je tvrtka ili ustanova uklonila podatke povezane s ovom aplikacijom jer su podaci aplikacije Microsoft Intune Company Portal ili aplikacija uklonjeni. Aplikacija će se sada zatvoriti. Da biste se ponovno povezali, prijavite se pomoću računa tvrtke ili obrazovne ustanove.</string>
+    <string name="wg_offline_ssp_removed_notify_wipe">Vaša je tvrtka ili ustanova uklonila podatke povezane s ovom aplikacijom jer su podaci aplikacije Microsoft Intune Company Portal ili aplikacija uklonjeni. Da biste se ponovno povezali, prijavite se pomoću računa tvrtke ili obrazovne ustanove.</string>
+</resources>

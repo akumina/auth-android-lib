@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intune_account_disallowed">Votre organisation n\'autorise pas ce compte à se connecter à cette application.</string>
+    <string name="intune_account_disallowed_fmt">Votre organisation n\'autorise pas ce compte à se connecter à cette application.\n\n%1$s n\'est pas ajouté.</string>
+    <string name="intune_account_removed_fmt">Votre organisation n\'autorise pas ce compte à se connecter à cette application.\n\n%1$s est supprimé.</string>
+    <string name="intune_allowed_account_explanation">Votre organisation autorise seulement certains comptes à se connecter à cette application.</string>
+    <string name="intune_allowed_accounts_description">Seuls les comptes listés peuvent se connecter.</string>
+    <string name="intune_allowed_accounts_explanation_all_added">Tous les comptes autorisés par votre organisation ont déjà été connectés.</string>
+    <string name="intune_allowed_accounts_title">Comptes autorisés</string>
+    <string name="wg_offline_branding_managed_by">Géré par votre organisation</string>
+    <string name="wg_offline_cancel">Annuler</string>
+    <string name="wg_offline_close">Fermer</string>
+    <string name="wg_offline_get_the_app">Accéder au Store</string>
+    <string name="wg_offline_go_back">Retour</string>
+    <string name="wg_offline_initialization_failure">Un problème s\'est produit au lancement de votre application. Essayez de mettre à jour l\'application ou l\'application Portail d\'entreprise Microsoft Intune. Si vous avez besoin d\'aide, contactez votre administrateur informatique.</string>
+    <string name="wg_offline_learn_more">En savoir plus</string>
+    <string name="wg_offline_mamca_failed_message">Impossible de protéger cette application, car une connexion avec le service n\'a pas abouti. Réessayez.</string>
+    <string name="wg_offline_mamca_failed_title">Réessayer</string>
+    <string name="wg_offline_must_restart">Votre service informatique va maintenant vous aider à protéger les données professionnelles ou scolaires dans cette application. Pour continuer, redémarrez l\'application.</string>
+    <string name="wg_offline_ok">OK</string>
+    <string name="wg_offline_policy_required_message">Cette application n\'a pas été configurée pour votre usage. Contactez votre administrateur informatique pour obtenir de l\'aide.</string>
+    <string name="wg_offline_sharing_blocked_dialog_text">Votre organisation n\'autorise pas ce partage.</string>
+    <string name="wg_offline_sharing_blocked_dialog_title">Partage non autorisé</string>
+    <string name="wg_offline_show_diagnostics_message">Les informations de diagnostic ne sont pas disponibles pour cet appareil. Contactez votre administrateur informatique pour obtenir de l’aide.\n\nEnrollment Status: %1$s.</string>
+    <string name="wg_offline_ssp_install_required_message">Pour utiliser votre compte professionnel ou scolaire avec cette application, vous devez installer l\'application Portail d\'entreprise Microsoft Intune. Appuyez sur « Accéder au Store » pour continuer.</string>
+    <string name="wg_offline_ssp_install_required_message_ngms">Pour utiliser votre compte professionnel ou scolaire avec cette application, vous devez installer l’application Microsoft Intune Portail d\'entreprise. Choisissez « En savoir plus » pour déterminer d’où vous pouvez obtenir l’application Portail d\'entreprise.</string>
+    <string name="wg_offline_ssp_removed_notify_system_wipe">Votre organisation a supprimé ses données associées à cette application, car l\'application Portail d\'entreprise Microsoft Intune ou ses données ont été supprimées. Cette application va maintenant se fermer. Pour vous reconnecter, vous devez utiliser votre compte professionnel ou scolaire.</string>
+    <string name="wg_offline_ssp_removed_notify_wipe">Votre organisation a supprimé ses données associées à cette application, car l\'application Portail d\'entreprise Microsoft Intune ou ses données ont été supprimées. Pour vous reconnecter, vous devez utiliser votre compte professionnel ou scolaire.</string>
+</resources>

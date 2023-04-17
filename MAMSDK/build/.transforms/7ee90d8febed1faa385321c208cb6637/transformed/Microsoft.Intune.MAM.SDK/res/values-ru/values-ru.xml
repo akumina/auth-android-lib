@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intune_account_disallowed">Ваша организация не разрешает вход в это приложение этой учетной записи.</string>
+    <string name="intune_account_disallowed_fmt">Ваша организация запрещает вход в приложение по этой учетной записи.\n\n%1$s не будет добавлен.</string>
+    <string name="intune_account_removed_fmt">Ваша организация запрещает вход в приложение по этой учетной записи.\n\n%1$s будет удален.</string>
+    <string name="intune_allowed_account_explanation">Ваша организация разрешает вход в это приложение только некоторым учетным записям.</string>
+    <string name="intune_allowed_accounts_description">Вход возможен только для перечисленных учетных записей.</string>
+    <string name="intune_allowed_accounts_explanation_all_added">Все учетные записи, разрешенные вашей организацией, уже были использованы для входа.</string>
+    <string name="intune_allowed_accounts_title">Разрешенные учетные записи</string>
+    <string name="wg_offline_branding_managed_by">Управляется вашей организацией</string>
+    <string name="wg_offline_cancel">Отмена</string>
+    <string name="wg_offline_close">Закрыть</string>
+    <string name="wg_offline_get_the_app">Перейти в магазин</string>
+    <string name="wg_offline_go_back">Назад</string>
+    <string name="wg_offline_initialization_failure">Возникла проблема при запуске приложения. Попробуйте обновить это приложение или приложение “Корпоративный портал Microsoft Intune”. Если потребуется помощь, обратитесь к ИТ-администратору.</string>
+    <string name="wg_offline_learn_more">Дополнительные сведения</string>
+    <string name="wg_offline_mamca_failed_message">Не удалось защитить это приложение, так как подключение к службе не было завершено. Повторите попытку.</string>
+    <string name="wg_offline_mamca_failed_title">Повторить попытку</string>
+    <string name="wg_offline_must_restart">Ваш ИТ-отдел теперь помогает защитить рабочие или учебные данные в этом приложении. Чтобы продолжить, перезапустите приложение.</string>
+    <string name="wg_offline_ok">ОК</string>
+    <string name="wg_offline_policy_required_message">Это приложение не было настроено для использования. За помощью обратитесь к своему ИТ-администратору.</string>
+    <string name="wg_offline_sharing_blocked_dialog_text">В вашей организации запрещено совместное использование этих данных.</string>
+    <string name="wg_offline_sharing_blocked_dialog_title">Совместное использование запрещено</string>
+    <string name="wg_offline_show_diagnostics_message">Сведения диагностики для этого устройства недоступны. Обратитесь за помощью к своему ИТ-администратору.\n\nСостояние регистрации: %1$s.</string>
+    <string name="wg_offline_ssp_install_required_message">Чтобы использовать рабочую или учебную учетную запись с этим приложением, установите приложение “Корпоративный портал Microsoft Intune”. Коснитесь кнопки “Перейти в магазин”, чтобы продолжить.</string>
+    <string name="wg_offline_ssp_install_required_message_ngms">Чтобы использовать рабочую или учебную учетную запись с этим приложением, установите приложение \"Корпоративный портал Microsoft Intune\". Нажмите \"Подробнее\", чтобы узнать, откуда можно получить приложение \"Корпоративный портал\".</string>
+    <string name="wg_offline_ssp_removed_notify_system_wipe">Ваша организация удалила данные, связанные с этим приложением, так как были удалены данные приложения “Корпоративный портал Microsoft Intune” или само приложение. Теперь приложение будет закрыто. Для повторного подключения войдите по рабочей или учебной учетной записи.</string>
+    <string name="wg_offline_ssp_removed_notify_wipe">Ваша организация удалила данные, связанные с этим приложением, так как были удалены данные приложения “Корпоративный портал Microsoft Intune” или само приложение. Для повторного подключения войдите по рабочей или учебной учетной записи.</string>
+</resources>

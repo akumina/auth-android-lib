@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intune_account_disallowed">你的组织不允许此帐户登录到此应用。</string>
+    <string name="intune_account_disallowed_fmt">你的组织不允许此帐户登录到此应用。\n\n将不添加 %1$s。</string>
+    <string name="intune_account_removed_fmt">你的组织不允许此帐户登录到此应用。\n\n将删除 %1$s。</string>
+    <string name="intune_allowed_account_explanation">你的组织只允许特定的帐户登录到此应用。</string>
+    <string name="intune_allowed_accounts_description">仅列出的帐户可以登录。</string>
+    <string name="intune_allowed_accounts_explanation_all_added">你的组织允许的所有帐户均已登录。</string>
+    <string name="intune_allowed_accounts_title">允许的帐户</string>
+    <string name="wg_offline_branding_managed_by">由你的组织托管</string>
+    <string name="wg_offline_cancel">取消</string>
+    <string name="wg_offline_close">返回</string>
+    <string name="wg_offline_get_the_app">转至商店</string>
+    <string name="wg_offline_go_back">返回</string>
+    <string name="wg_offline_initialization_failure">启动应用时出现问题。请尝试更新该应用或 Microsoft Intune 公司门户应用。如需帮助，请与你的 IT 管理员联系。</string>
+    <string name="wg_offline_learn_more">了解详细信息</string>
+    <string name="wg_offline_mamca_failed_message">由于与服务的连接未完成，无法保护此应用。请重试。</string>
+    <string name="wg_offline_mamca_failed_title">重试</string>
+    <string name="wg_offline_must_restart">IT 部门正在帮助你保护此应用中的工作或学校数据。请重启应用以继续操作。</string>
+    <string name="wg_offline_ok">确定</string>
+    <string name="wg_offline_policy_required_message">尚未为你设置使用此应用。如需帮助，请与 IT 管理员联系。</string>
+    <string name="wg_offline_sharing_blocked_dialog_text">你的组织禁止此共享。</string>
+    <string name="wg_offline_sharing_blocked_dialog_title">禁止共享</string>
+    <string name="wg_offline_show_diagnostics_message">此设备的诊断信息不可用。请与 IT 管理员联系以获取帮助。 \n\n注册状态: %1$s。</string>
+    <string name="wg_offline_ssp_install_required_message">若要将工作或学校帐户用于此应用，必须安装 Microsoft Intune 公司门户应用。请点击“转到商店”继续操作。</string>
+    <string name="wg_offline_ssp_install_required_message_ngms">要将工作或学校帐户用于此应用，必须安装 Microsoft Intune 公司门户应用。选择“了解详细信息”以确定可以从何处获取公司门户应用。</string>
+    <string name="wg_offline_ssp_removed_notify_system_wipe">你的组织删除了与此应用关联的数据，因为已删除 Microsoft Intune 公司门户数据或应用程序。此应用程序现将关闭。若要重新连接，必须使用工作或学校帐户登录。</string>
+    <string name="wg_offline_ssp_removed_notify_wipe">你的组织已删除与此应用关联的数据，因为 Microsoft Intune 公司门户数据或应用程序已被删除。若要重新连接，必须使用工作或学校帐户登录。</string>
+</resources>

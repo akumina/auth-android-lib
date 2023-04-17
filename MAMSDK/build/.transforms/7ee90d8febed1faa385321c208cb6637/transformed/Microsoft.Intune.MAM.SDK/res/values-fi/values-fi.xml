@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intune_account_disallowed">Organisaatiosi ei salli tämän tilin kirjautua sisään tähän sovellukseen.</string>
+    <string name="intune_account_disallowed_fmt">Organisaatiosi ei salli tämän tilin kirjautua sisään tähän sovellukseen.\n\nKohdetta %1$s ei lisätä.</string>
+    <string name="intune_account_removed_fmt">Organisaatiosi ei salli tämän tilin kirjautua sisään tähän sovellukseen.\n\nKohde %1$s poistetaan.</string>
+    <string name="intune_allowed_account_explanation">Organisaatiosi sallii vain tiettyjen tilien kirjautua sisään tähän sovellukseen.</string>
+    <string name="intune_allowed_accounts_description">Vain luettelossa olevat tilit voivat kirjautua sisään.</string>
+    <string name="intune_allowed_accounts_explanation_all_added">Kaikki organisaatiosi sallimat tilit ovat jo kirjautuneet sisään.</string>
+    <string name="intune_allowed_accounts_title">Sallitut tilit</string>
+    <string name="wg_offline_branding_managed_by">Organisaatiosi hallitsema</string>
+    <string name="wg_offline_cancel">Peruuta</string>
+    <string name="wg_offline_close">Sulje</string>
+    <string name="wg_offline_get_the_app">Siirry kauppaan</string>
+    <string name="wg_offline_go_back">Palaa takaisin</string>
+    <string name="wg_offline_initialization_failure">Sovelluksesi käynnistämisessä oli ongelma. Kokeile päivittää sovellus tai Microsoft Intunen yritysportaalisovellus. Jos tarvitset apua, ota yhteyttä IT-järjestelmänvalvojaasi.</string>
+    <string name="wg_offline_learn_more">Lue lisätietoja</string>
+    <string name="wg_offline_mamca_failed_message">Tätä sovellusta ei voitu suojata, koska yhteyttä palveluun ei voitu muodostaa. Yritä uudelleen.</string>
+    <string name="wg_offline_mamca_failed_title">Yritä uudelleen</string>
+    <string name="wg_offline_must_restart">IT-osastosi auttaa sinua nyt suojaamaan työ- tai koulutietoja tässä sovelluksessa. Jatka käynnistämällä sovellus uudelleen.</string>
+    <string name="wg_offline_ok">OK</string>
+    <string name="wg_offline_policy_required_message">Tätä sovellusta ei ole määritetty käyttöösi. Kysy ohjeita IT-järjestelmänvalvojaltasi.</string>
+    <string name="wg_offline_sharing_blocked_dialog_text">Organisaatiosi ei salli tätä jakamista.</string>
+    <string name="wg_offline_sharing_blocked_dialog_title">Jakamista ei sallita</string>
+    <string name="wg_offline_show_diagnostics_message">Diagnostiikkatiedot eivät ole käytettävissä tälle laitteelle. Ota yhteyttä IT-järjestelmänvalvojaasi, jotta saat apua.\n\nRekisteröitymisen tila: %1$s.</string>
+    <string name="wg_offline_ssp_install_required_message">Sinun on asennettava Microsoft Intunen yritysportaalisovellus, jotta voit käyttää työ- tai koulutiliäsi tämän sovelluksen kanssa. Jatka napauttamalla Siirry kauppaan.</string>
+    <string name="wg_offline_ssp_install_required_message_ngms">Jos haluat käyttää työpaikan tai oppilaitoksen tiliä tämän sovelluksen kanssa, sinun on asennettava Microsoft Intune-yritysportaalisovellus. Valitse Lisätietoja määrittääksesi, mistä saat Yritysportaalisovelluksen.</string>
+    <string name="wg_offline_ssp_removed_notify_system_wipe">Organisaatiosi on poistanut tähän sovellukseen liittyvät tietonsa, koska Microsoft Intunen yritysportaalitiedot tai -sovellus poistettiin. Tämä sovellus suljetaan nyt. Jos haluat yhdistää uudelleen, sinun on kirjauduttava sisään työ- tai koulutiliisi.</string>
+    <string name="wg_offline_ssp_removed_notify_wipe">Organisaatiosi on poistanut tähän sovellukseen liittyvät tietonsa, koska Microsoft Intunen yritysportaalitiedot tai -sovellus poistettiin. Jos haluat yhdistää uudelleen, sinun on kirjauduttava sisään työ- tai koulutiliisi.</string>
+</resources>

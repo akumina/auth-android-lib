@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intune_account_disallowed">Din organisation tillåter inte att kontot loggar in på appen.</string>
+    <string name="intune_account_disallowed_fmt">Din organisation tillåter inte att kontot loggar in på appen.\n\n%1$s läggs inte till.</string>
+    <string name="intune_account_removed_fmt">Din organisation tillåter inte att kontot loggar in på appen.\n\n%1$s tas bort.</string>
+    <string name="intune_allowed_account_explanation">Din organisation tillåter endast att vissa konton loggar in på appen.</string>
+    <string name="intune_allowed_accounts_description">Endast kontona i listan kan loggas in.</string>
+    <string name="intune_allowed_accounts_explanation_all_added">Alla konton som tillåts av organisationen har redan loggats in.</string>
+    <string name="intune_allowed_accounts_title">Tillåtna konton</string>
+    <string name="wg_offline_branding_managed_by">Hanteras av din organisation</string>
+    <string name="wg_offline_cancel">Avbryt</string>
+    <string name="wg_offline_close">Stäng</string>
+    <string name="wg_offline_get_the_app">Gå till butik</string>
+    <string name="wg_offline_go_back">Gå tillbaka</string>
+    <string name="wg_offline_initialization_failure">Ett problem uppstod när appen skulle startas. Försök att uppdatera appen eller Microsoft Intunes företagsportalapp. Kontakta IT-administratören om du behöver hjälp.</string>
+    <string name="wg_offline_learn_more">Läs mer</string>
+    <string name="wg_offline_mamca_failed_message">Den här appen kunde inte skyddas eftersom det inte gick att ansluta till tjänsten. Försök igen.</string>
+    <string name="wg_offline_mamca_failed_title">Försök igen</string>
+    <string name="wg_offline_must_restart">Din IT-avdelning hjälper dig att skydda arbets- och skolinformation i den här appen. Starta om appen och fortsätt.</string>
+    <string name="wg_offline_ok">OK</string>
+    <string name="wg_offline_policy_required_message">Den här appen har inte ställts in för att användas av dig. Kontakta it-administratören om du behöver hjälp.</string>
+    <string name="wg_offline_sharing_blocked_dialog_text">Din organisation tillåter inte den här delningen.</string>
+    <string name="wg_offline_sharing_blocked_dialog_title">Delning är inte tillåtet</string>
+    <string name="wg_offline_show_diagnostics_message">Diagnostikinformation är inte tillgängligt för den här enheten. Kontakta it-administratören för att få hjälp.\n\nRegistreringsstatus: %1$s.</string>
+    <string name="wg_offline_ssp_install_required_message">Om du ska kunna använda ditt arbets- eller skolkonto med den här appen måste du installera Microsoft Intunes företagsportalapp. Tryck på Gå till butik för att fortsätta.</string>
+    <string name="wg_offline_ssp_install_required_message_ngms">Om du vill använda ditt arbets- eller skolkonto med den här appen måste du installera Microsoft Intune Företagsportal-appen. Välj Läs mer för att avgöra var du kan hämta Företagsportal appen från.</string>
+    <string name="wg_offline_ssp_removed_notify_system_wipe">Organisationen har tagit bort sina data som är kopplade till den här appen eftersom data eller program på Microsoft Intune-företagsportalen har tagits bort. Programmet stängs nu. Om du vill ansluta på nytt måste du logga in med ditt arbets- eller skolkonto.</string>
+    <string name="wg_offline_ssp_removed_notify_wipe">Organisationen har tagit bort sina data som är kopplade till den här appen eftersom Microsoft Intune-företagsportalsdata eller programmet har tagits bort. Om du vill ansluta på nytt måste du logga in med ditt arbets- eller skolkonto.</string>
+</resources>

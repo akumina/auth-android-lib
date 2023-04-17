@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intune_account_disallowed">A sua organização não permite que esta conta inicie sessão neste aplicação.</string>
+    <string name="intune_account_disallowed_fmt">A sua organização não permite que esta conta inicie sessão nesta aplicação.\n\n%1$s não será adicionado.</string>
+    <string name="intune_account_removed_fmt">A sua organização não permite que esta conta inicie sessão nesta aplicação.\n\n%1$s será removido.</string>
+    <string name="intune_allowed_account_explanation">A sua organização só permite o início de sessão de determinadas contas nesta aplicação.</string>
+    <string name="intune_allowed_accounts_description">Apenas as contas listadas podem iniciar sessão.</string>
+    <string name="intune_allowed_accounts_explanation_all_added">Todas as contas permitidas pela sua organização já têm sessão iniciada.</string>
+    <string name="intune_allowed_accounts_title">Contas Permitidas</string>
+    <string name="wg_offline_branding_managed_by">Gerido pela sua organização</string>
+    <string name="wg_offline_cancel">Cancelar</string>
+    <string name="wg_offline_close">Fechar</string>
+    <string name="wg_offline_get_the_app">Ir para a loja</string>
+    <string name="wg_offline_go_back">Voltar</string>
+    <string name="wg_offline_initialization_failure">Houve um problema ao iniciar a sua aplicação. Tente atualizar a aplicação ou a aplicação Portal da Empresa do Microsoft Intune. Se precisar de ajuda, contacte o seu administrador de TI.</string>
+    <string name="wg_offline_learn_more">Saiba Mais</string>
+    <string name="wg_offline_mamca_failed_message">Não foi possível proteger esta aplicação porque uma ligação com o serviço não foi concluída. Tente novamente.</string>
+    <string name="wg_offline_mamca_failed_title">Tentar Novamente</string>
+    <string name="wg_offline_must_restart">O seu administrador de TI está a ajudá-lo a proteger os seus dados de trabalho ou escolares nesta aplicação Reinicie a aplicação para continuar.</string>
+    <string name="wg_offline_ok">OK</string>
+    <string name="wg_offline_policy_required_message">Esta aplicação não foi configurada para utilização. Contacte o seu administrador de TI para obter ajuda.</string>
+    <string name="wg_offline_sharing_blocked_dialog_text">A política da sua organização não permite esta partilha.</string>
+    <string name="wg_offline_sharing_blocked_dialog_title">Partilha não permitida</string>
+    <string name="wg_offline_show_diagnostics_message">A informação de diagnóstico não está disponível para este dispositivo. Contacte o seu administrador de TI para obter ajuda.\n\nEstado da Inscrição: %1$s.</string>
+    <string name="wg_offline_ssp_install_required_message">Para utilizar a sua conta de trabalho ou escolar com esta aplicação, tem de instalar a aplicação Portal da Empresa do Microsoft Intune. Toque em \"Ir para a loja\" para continuar.</string>
+    <string name="wg_offline_ssp_install_required_message_ngms">Para utilizar a sua conta escolar ou profissional com esta aplicação, tem de instalar a aplicação Portal da Empresa do Microsoft Intune. Selecione \"Saiba Mais\" para determinar aonde pode obter a aplicação Portal da Empresa.</string>
+    <string name="wg_offline_ssp_removed_notify_system_wipe">A sua organização removeu os seus dados associados a esta aplicação porque os dados ou aplicação Portal da Empresa do Microsoft Intune foram removidos. Esta aplicação vai fechar agora. Para voltar a ligar, tem de iniciar sessão com a sua conta de trabalho ou escolar.</string>
+    <string name="wg_offline_ssp_removed_notify_wipe">A sua organização removeu os seus dados associados a esta aplicação porque os dados ou aplicação Portal da Empresa do Microsoft Intune foram removidos. Para voltar a ligar, tem de iniciar sessão com a sua conta de trabalho ou escolar.</string>
+</resources>

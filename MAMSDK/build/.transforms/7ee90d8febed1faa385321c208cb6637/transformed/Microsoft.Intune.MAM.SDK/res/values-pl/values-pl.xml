@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intune_account_disallowed">Twoja organizacja nie zezwala temu kontu na logowania się do tej aplikacji.</string>
+    <string name="intune_account_disallowed_fmt">Twoja organizacja nie zezwala temu kontu na logowania się do tej aplikacji.\n\nKonto %1$s nie zostanie dodane.</string>
+    <string name="intune_account_removed_fmt">Twoja organizacja nie zezwala temu kontu na logowania się do tej aplikacji.\n\nKonto %1$s zostanie usunięte.</string>
+    <string name="intune_allowed_account_explanation">Twoja organizacja zezwala tylko określonym kontom na logowanie się do tej aplikacji.</string>
+    <string name="intune_allowed_accounts_description">Logowanie jest możliwe tylko z wymienionych kont.</string>
+    <string name="intune_allowed_accounts_explanation_all_added">Wszystkie konta dozwolone przez Twoją organizację zostały już zalogowane.</string>
+    <string name="intune_allowed_accounts_title">Dozwolone konta</string>
+    <string name="wg_offline_branding_managed_by">Zarządzane przez Twoją organizację</string>
+    <string name="wg_offline_cancel">Anuluj</string>
+    <string name="wg_offline_close">Zamknij</string>
+    <string name="wg_offline_get_the_app">Przejdź do sklepu</string>
+    <string name="wg_offline_go_back">Wróć</string>
+    <string name="wg_offline_initialization_failure">Wystąpił problem podczas uruchamiania aplikacji. Spróbuj zaktualizować aplikację lub aplikację Portal firmy usługi Microsoft Intune. Jeśli potrzebujesz pomocy, skontaktuj się z administratorem IT.</string>
+    <string name="wg_offline_learn_more">Dowiedz się więcej</string>
+    <string name="wg_offline_mamca_failed_message">Nie można chronić tej aplikacji, ponieważ nie ukończono łączenia z usługą. Spróbuj ponownie.</string>
+    <string name="wg_offline_mamca_failed_title">Spróbuj ponownie</string>
+    <string name="wg_offline_must_restart">Od teraz Twój dział IT będzie pomagać Ci w ochronie danych służbowych w tej aplikacji. Ponownie uruchom aplikację, aby kontynuować.</string>
+    <string name="wg_offline_ok">OK</string>
+    <string name="wg_offline_policy_required_message">Nie skonfigurowano korzystania przez Ciebie z tej aplikacji. Aby uzyskać pomoc, skontaktuj się z administratorem informatycznym.</string>
+    <string name="wg_offline_sharing_blocked_dialog_text">Twoja organizacja nie zezwala na to udostępnianie.</string>
+    <string name="wg_offline_sharing_blocked_dialog_title">Udostępnianie niedozwolone</string>
+    <string name="wg_offline_show_diagnostics_message">Informacje diagnostyczne nie są dostępne dla tego urządzenia. Aby uzyskać pomoc, skontaktuj się z administratorem IT.\n\nStan rejestracji: %1$s.</string>
+    <string name="wg_offline_ssp_install_required_message">Aby w tej aplikacji korzystać z konta służbowego, musisz zainstalować aplikację Portal firmy usługi Microsoft Intune. Naciśnij pozycję „Idź do sklepu”, aby kontynuować.</string>
+    <string name="wg_offline_ssp_install_required_message_ngms">Aby używać konta służbowego z tą aplikacją, musisz zainstalować aplikację Intune — Portal firmy. Wybierz pozycję „Dowiedz się więcej”, aby określić, skąd można pobrać tę aplikację.</string>
+    <string name="wg_offline_ssp_removed_notify_system_wipe">Twoja organizacja usunęła swoje dane skojarzone z tą aplikacją, ponieważ usunięto dane lub aplikację Portal firmy usługi Microsoft Intune. Ta aplikacja zostanie teraz zamknięta. Aby ponownie nawiązać połączenie, musisz zalogować się za pomocą konta służbowego.</string>
+    <string name="wg_offline_ssp_removed_notify_wipe">Twoja organizacja usunęła swoje dane skojarzone z tą aplikacją, ponieważ usunięto dane lub aplikację Portal firmy usługi Microsoft Intune. Aby ponownie nawiązać połączenie, musisz zalogować się za pomocą konta służbowego.</string>
+</resources>

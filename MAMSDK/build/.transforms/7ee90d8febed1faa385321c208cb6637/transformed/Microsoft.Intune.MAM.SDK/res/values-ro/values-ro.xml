@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intune_account_disallowed">Organizația nu permite acestui cont să se conecteze la această aplicație.</string>
+    <string name="intune_account_disallowed_fmt">Organizația dvs. nu permite acestui cont să se conecteze la această aplicație.\n\n%1$s nu va fi adăugat.</string>
+    <string name="intune_account_removed_fmt">Organizația dvs. nu permite acestui cont să se conecteze la această aplicație.\n\n%1$s va fi eliminat.</string>
+    <string name="intune_allowed_account_explanation">Organizația permite doar anumitor conturi să se conecteze la această aplicație.</string>
+    <string name="intune_allowed_accounts_description">Numai conturile enumerate se pot conecta.</string>
+    <string name="intune_allowed_accounts_explanation_all_added">Toate conturile autorizate de organizație s-au conectat deja.</string>
+    <string name="intune_allowed_accounts_title">Conturi permise</string>
+    <string name="wg_offline_branding_managed_by">Gestionat de organizația dvs.</string>
+    <string name="wg_offline_cancel">Anulare</string>
+    <string name="wg_offline_close">Închidere</string>
+    <string name="wg_offline_get_the_app">Mergeți la magazin</string>
+    <string name="wg_offline_go_back">Mergeți înapoi</string>
+    <string name="wg_offline_initialization_failure">A existat o problemă la lansarea aplicației. Încercați să actualizați aplicația sau aplicația Portal firmă Microsoft Intune. Dacă aveți nevoie de ajutor, contactați administratorul IT.</string>
+    <string name="wg_offline_learn_more">Aflați mai multe</string>
+    <string name="wg_offline_mamca_failed_message">Această aplicație nu s-a putut proteja, deoarece o conexiune cu serviciul nu s-a finalizat. Încercați din nou.</string>
+    <string name="wg_offline_mamca_failed_title">Încercați din nou</string>
+    <string name="wg_offline_must_restart">Departamentul IT vă ajută acum să protejați datele de la locul de muncă sau de la școală în această aplicație. Reporniți aplicația pentru a continua.</string>
+    <string name="wg_offline_ok">OK</string>
+    <string name="wg_offline_policy_required_message">Această aplicație nu a fost configurată pentru a fi utilizată de către dvs. Contactați administratorul IT pentru ajutor.</string>
+    <string name="wg_offline_sharing_blocked_dialog_text">Organizația dvs. nu permite această partajare.</string>
+    <string name="wg_offline_sharing_blocked_dialog_title">Partajarea nu este permisă</string>
+    <string name="wg_offline_show_diagnostics_message">Informațiile de diagnosticare nu sunt disponibile pentru acest dispozitiv. Contactați administratorul IT pentru ajutor.\n\nStarea de înregistrare: %1$s.</string>
+    <string name="wg_offline_ssp_install_required_message">Pentru a vă utiliza contul de la locul de muncă sau de la școală cu această aplicație, trebuie să instalați aplicația Portal firmă Microsoft Intune. Atingeți „Mergeți la magazin” pentru a continua.</string>
+    <string name="wg_offline_ssp_install_required_message_ngms">Pentru a vă utiliza contul de la locul de muncă sau de la școală cu această aplicație, trebuie să instalați aplicația Microsoft Intune Company Portal. Alegeți „Aflați mai multe” pentru a determina de unde puteți obține aplicația Company Portal.</string>
+    <string name="wg_offline_ssp_removed_notify_system_wipe">Organizația dvs. a eliminat datele sale asociate cu această aplicație, deoarece datele sau aplicația Portal firmă Microsoft Intune au fost eliminate. Această aplicație se va închide acum. Pentru a vă reconecta, trebuie sa vă conectați cu contul de la locul de muncă sau de la școală.</string>
+    <string name="wg_offline_ssp_removed_notify_wipe">Organizația dvs. a eliminat datele sale asociate cu această aplicație, deoarece datele sau aplicația Portal firmă Microsoft Intune au fost eliminate. Pentru a vă reconecta, trebuie sa vă conectați cu contul de la locul de muncă sau de la școală.</string>
+</resources>

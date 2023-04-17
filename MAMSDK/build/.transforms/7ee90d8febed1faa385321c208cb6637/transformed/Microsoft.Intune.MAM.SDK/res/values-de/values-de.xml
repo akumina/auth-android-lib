@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intune_account_disallowed">Ihre Organisation lässt eine Anmeldung bei dieser App mit diesem Konto nicht zu.</string>
+    <string name="intune_account_disallowed_fmt">Ihre Organisation lässt eine Anmeldung bei dieser App mit diesem Konto nicht zu.\n\n“%1$s” wird nicht hinzugefügt.</string>
+    <string name="intune_account_removed_fmt">Ihre Organisation lässt eine Anmeldung bei dieser App mit diesem Konto nicht zu.\n\n“%1$s” wird entfernt.</string>
+    <string name="intune_allowed_account_explanation">Ihre Organisation lässt eine Anmeldung bei dieser App nur über bestimmte Konten zu.</string>
+    <string name="intune_allowed_accounts_description">Nur die aufgeführten Konten können sich anmelden.</string>
+    <string name="intune_allowed_accounts_explanation_all_added">Alle Konten, die von Ihrer Organisation zugelassen sind, sind bereits angemeldet.</string>
+    <string name="intune_allowed_accounts_title">Zulässige Konten</string>
+    <string name="wg_offline_branding_managed_by">Von Ihrer Organisation verwaltet</string>
+    <string name="wg_offline_cancel">Abbrechen</string>
+    <string name="wg_offline_close">Schließen</string>
+    <string name="wg_offline_get_the_app">Zum Store gehen</string>
+    <string name="wg_offline_go_back">Zurück</string>
+    <string name="wg_offline_initialization_failure">Problem beim Starten Ihrer App. Versuchen Sie, die App oder die Microsoft Intune-Unternehmensportal-App zu aktualisieren. Wenden Sie sich an Ihren IT-Administrator, wenn Sie Hilfe benötigen.</string>
+    <string name="wg_offline_learn_more">Weitere Informationen</string>
+    <string name="wg_offline_mamca_failed_message">Diese App konnte nicht geschützt werden, weil eine Verbindung mit dem Dienst nicht abgeschlossen wurde. Wiederholen Sie den Vorgang.</string>
+    <string name="wg_offline_mamca_failed_title">Erneut versuchen</string>
+    <string name="wg_offline_must_restart">Ihre IT-Abteilung unterstützt Sie jetzt beim Schutz von Geschäfts-, Schul- oder Unidaten in dieser App. Starten Sie die App neu, um den Vorgang fortzusetzen.</string>
+    <string name="wg_offline_ok">OK</string>
+    <string name="wg_offline_policy_required_message">Diese App wurde nicht für Sie eingerichtet. Wenden Sie sich an Ihren IT-Administrator, um Hilfe anzufordern.</string>
+    <string name="wg_offline_sharing_blocked_dialog_text">Ihre Organisation lässt diese Freigabe nicht zu.</string>
+    <string name="wg_offline_sharing_blocked_dialog_title">Freigabe nicht zulässig</string>
+    <string name="wg_offline_show_diagnostics_message">Für dieses Gerät sind keine Diagnoseinformationen verfügbar. Wenden Sie sich an Ihren IT-Administrator, um Hilfe zu erhalten.\n\nRegistrierungsstatus: %1$s.</string>
+    <string name="wg_offline_ssp_install_required_message">Um Ihr Geschäfts-, Schul- oder Unikonto mit dieser App zu verwenden, müssen Sie die Microsoft Intune-Unternehmensportal-App installieren. Tippen Sie auf “Zum Store gehen”, um den Vorgang fortzusetzen.</string>
+    <string name="wg_offline_ssp_install_required_message_ngms">Um Ihr Geschäfts-, Schul- oder Unikonto mit dieser App zu verwenden, müssen Sie die Microsoft Intune Unternehmensportal-App installieren. Wählen Sie \"Weitere Informationen\" aus, um herauszufinden, wo Sie die Unternehmensportal-App erhalten können.</string>
+    <string name="wg_offline_ssp_removed_notify_system_wipe">Ihre Organisation hat die dieser App zugeordneten Daten entfernt, weil die Microsoft Intune-Unternehmensportaldaten oder die Anwendung entfernt wurde(n). Diese Anwendung wird jetzt geschlossen. Um erneut eine Verbindung herzustellen, müssen Sie sich mit Ihrem Geschäfts-, Schul- oder Unikonto anmelden.</string>
+    <string name="wg_offline_ssp_removed_notify_wipe">Ihre Organisation hat die dieser App zugeordneten Daten entfernt, weil die Microsoft Intune-Unternehmensportaldaten oder die Anwendung entfernt wurde(n). Um erneut eine Verbindung herzustellen, müssen Sie sich mit Ihrem Geschäfts-, Schul- oder Unikonto anmelden.</string>
+</resources>

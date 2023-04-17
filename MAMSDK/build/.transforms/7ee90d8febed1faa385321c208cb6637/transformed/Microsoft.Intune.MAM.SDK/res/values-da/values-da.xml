@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intune_account_disallowed">Din organisation tillader ikke, at denne konto logger på appen.</string>
+    <string name="intune_account_disallowed_fmt">Din organisation tillader ikke, at denne konto logger på appen.\n\n%1$s tilføjes ikke.</string>
+    <string name="intune_account_removed_fmt">Din organisation tillader ikke, at denne konto logger på appen.\n\n%1$s vil blive fjernet.</string>
+    <string name="intune_allowed_account_explanation">Din organisation tillader kun, at bestemte konti logger på appen.</string>
+    <string name="intune_allowed_accounts_description">Kun de angivne konti kan logge på.</string>
+    <string name="intune_allowed_accounts_explanation_all_added">Alle konti, der er tilladt i organisationen, har allerede logget på.</string>
+    <string name="intune_allowed_accounts_title">Tilladte konti</string>
+    <string name="wg_offline_branding_managed_by">Administreret af din organisation</string>
+    <string name="wg_offline_cancel">Annuller</string>
+    <string name="wg_offline_close">Luk</string>
+    <string name="wg_offline_get_the_app">Gå til butikken</string>
+    <string name="wg_offline_go_back">Gå tilbage</string>
+    <string name="wg_offline_initialization_failure">Der var et problem med at starte appen. Prøv at opdatere appen eller appen Microsoft Intune-firmaportal. Kontakt din it-administrator, hvis du har brug for hjælp.</string>
+    <string name="wg_offline_learn_more">Få mere at vide</string>
+    <string name="wg_offline_mamca_failed_message">Denne app kunne ikke beskyttes, da der ikke blev oprettet forbindelse til tjenesten. Prøv igen.</string>
+    <string name="wg_offline_mamca_failed_title">Prøv igen</string>
+    <string name="wg_offline_must_restart">Din it-afdeling hjælper dig nu med at beskytte arbejds- eller skoledata i denne app. Genstart appen for at fortsætte.</string>
+    <string name="wg_offline_ok">OK</string>
+    <string name="wg_offline_policy_required_message">Dette program er endnu ikke blevet opsat til din brug. Kontakt din it-administrator for at få hjælp.</string>
+    <string name="wg_offline_sharing_blocked_dialog_text">Din organisation tillader ikke denne deling.</string>
+    <string name="wg_offline_sharing_blocked_dialog_title">Deling ikke tilladt</string>
+    <string name="wg_offline_show_diagnostics_message">Diagnostiske oplysninger er ikke tilgængelige for denne enhed. Kontakt din IT-administrator for at få hjælp.\n\nTilmeldingsstatus: %1$s.</string>
+    <string name="wg_offline_ssp_install_required_message">Før du kan bruge din arbejds- eller skolekonto til denne app, skal du installere den gratis app Microsoft Intune-firmaportal. Tryk på “Gå til butikken” for at fortsætte.</string>
+    <string name="wg_offline_ssp_install_required_message_ngms">Hvis du vil bruge din arbejds- eller skolekonto med denne app, skal du installere appen Microsoft Intune-firmaportal. Vælg \"Få mere at vide\" for at afgøre, hvor du kan hente appen Firmaportal.</string>
+    <string name="wg_offline_ssp_removed_notify_system_wipe">Din organisation har fjernet de af sine data, der var tilknyttet denne app, fordi Microsoft Intune-firmaportalens data eller program blev fjernet. Programmet lukkes nu. Hvis du vil oprette forbindelse igen, skal du logge på med din arbejds- eller skolekonto.</string>
+    <string name="wg_offline_ssp_removed_notify_wipe">Din organisation har fjernet de data, som var knyttet til denne app, fordi data eller applikationen fra Microsoft Intune Firmaportal blev fjernet. Hvis du vil oprette forbindelse igen, skal du logge på med din arbejds- eller skolekonto.</string>
+</resources>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.microsoft.intune.mam"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="33" />
+
+    <!--
+    Note: Any settings in this manifest will not be merged into the MAM SDK.
+    Any settings defined here should also be defined in AppClient.External.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <queries>
+        <package android:name="com.microsoft.windowsintune.companyportal" />
+    </queries>
+
+    <application tools:ignore="MissingApplicationIcon" >
+        <service
+            android:name="com.microsoft.intune.mam.client.notification.MAMNotificationReceiverService"
+            android:exported="true"
+            android:label=""
+            tools:ignore="ExportedService" >
+
+            <!--
+            Note: if adding an intent-filter, ensure all users of this component create intents
+            that match at least one filter. For details, refer to the following Android docs:
+            https://developer.android.com/about/versions/13/behavior-changes-13#intent-filters
+            -->
+        </service>
+        <service
+            android:name="com.microsoft.intune.mam.client.service.MAMBackgroundService"
+            android:exported="false"
+            android:label="" />
+        <service
+            android:name="com.microsoft.intune.mam.client.service.MAMBackgroundJobService"
+            android:exported="false"
+            android:label=""
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <receiver
+            android:name="com.microsoft.intune.mam.client.service.MAMBackgroundReceiver"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.microsoft.intune.mam.client.app.offline.OfflineStartupBlockedActivity"
+            android:exported="false"
+            android:multiprocess="true" />
+        <activity
+            android:name="com.microsoft.intune.mam.client.app.offline.OfflineRestartRequiredActivity"
+            android:exported="false"
+            android:multiprocess="true" />
+        <activity
+            android:name="com.microsoft.intune.mam.client.app.startup.MAMStartupActivity"
+            android:exported="false"
+            android:multiprocess="true" />
+        <!--
+             MAMResolverActivity has taskAffinity="" instead of the default one (the app's defaultAffinity).
+             This way when we prompt (e.g. install Managed Browser), the system doesn't bring up some existing
+             task record that confuses UI.
+        -->
+        <activity
+            android:name="com.microsoft.intune.mam.client.app.resolver.MAMResolverActivity"
+            android:exported="false"
+            android:taskAffinity=""
+            android:theme="@style/MAMDialogTheme" />
+        <activity
+            android:name="com.microsoft.intune.mam.client.app.offline.OfflineInstallCompanyPortalDialogActivity"
+            android:exported="false"
+            android:multiprocess="true"
+            android:theme="@style/MAMDialogTheme" />
+        <activity
+            android:name="com.microsoft.intune.mam.client.app.offline.OfflineNotifyWipeActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.microsoft.intune.mam.client.app.startup.MAMComplianceBlockActivity"
+            android:exported="false"
+            android:label="ComplianceBlock" />
+    </application>
+
+</manifest>

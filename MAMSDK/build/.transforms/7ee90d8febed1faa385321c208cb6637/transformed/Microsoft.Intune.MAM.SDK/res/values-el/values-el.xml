@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intune_account_disallowed">Ο οργανισμός σας δεν επιτρέπει την είσοδο σε αυτή την εφαρμογή σε αυτόν τον λογαριασμό.</string>
+    <string name="intune_account_disallowed_fmt">Ο οργανισμός σας δεν επιτρέπει σε αυτόν τον λογαριασμό την είσοδο σε αυτή την εφαρμογή.\n\nΟ λογαριασμός %1$s δεν θα προστεθεί.</string>
+    <string name="intune_account_removed_fmt">Ο οργανισμός σας δεν επιτρέπει σε αυτόν τον λογαριασμό την είσοδο σε αυτή την εφαρμογή.\n\nΟ λογαριασμός %1$s θα καταργηθεί.</string>
+    <string name="intune_allowed_account_explanation">Ο οργανισμός σας επιτρέπει την είσοδο σε αυτή την εφαρμογή μόνο σε ορισμένους λογαριασμούς.</string>
+    <string name="intune_allowed_accounts_description">Μόνο οι λογαριασμοί που παρατίθενται μπορούν να εισέρχονται.</string>
+    <string name="intune_allowed_accounts_explanation_all_added">Όλοι οι λογαριασμοί που επιτρέπονται από τον οργανισμό σας έχουν ήδη εισέλθει.</string>
+    <string name="intune_allowed_accounts_title">Επιτρεπόμενοι λογαριασμοί</string>
+    <string name="wg_offline_branding_managed_by">Διαχείριση από τον οργανισμό σας</string>
+    <string name="wg_offline_cancel">Άκυρο</string>
+    <string name="wg_offline_close">Κλείσιμο</string>
+    <string name="wg_offline_get_the_app">Μετάβαση στο Store</string>
+    <string name="wg_offline_go_back">Επιστροφή</string>
+    <string name="wg_offline_initialization_failure">Παρουσιάστηκε πρόβλημα κατά την εκκίνηση της εφαρμογής σας. Δοκιμάστε να ενημερώσετε την εφαρμογή ή την εφαρμογή Εταιρική πύλη του Microsoft Intune. Αν χρειάζεστε βοήθεια, επικοινωνήστε με τον διαχειριστή IT.</string>
+    <string name="wg_offline_learn_more">Μάθετε περισσότερα</string>
+    <string name="wg_offline_mamca_failed_message">Δεν ήταν δυνατή η προστασία αυτής της εφαρμογής, επειδή δεν ολοκληρώθηκε μια σύνδεση με την υπηρεσία. Δοκιμάστε ξανά.</string>
+    <string name="wg_offline_mamca_failed_title">Επανάληψη</string>
+    <string name="wg_offline_must_restart">Το τμήμα IT σάς βοηθά πλέον στην προστασία των εταιρικών ή σχολικών δεδομένων σε αυτήν την εφαρμογή. Επανεκκινήστε την εφαρμογή για να συνεχίσετε.</string>
+    <string name="wg_offline_ok">OK</string>
+    <string name="wg_offline_policy_required_message">Αυτή η εφαρμογή δεν έχει ρυθμιστεί για χρήση από εσάς. Επικοινωνήστε με το διαχειριστή IT για βοήθεια.</string>
+    <string name="wg_offline_sharing_blocked_dialog_text">Ο οργανισμός σας δεν επιτρέπει αυτή την κοινή χρήση.</string>
+    <string name="wg_offline_sharing_blocked_dialog_title">Η κοινή χρήση δεν επιτρέπεται</string>
+    <string name="wg_offline_show_diagnostics_message">Οι πληροφορίες διαγνωστικών δεν είναι διαθέσιμες για αυτήν τη συσκευή. Επικοινωνήστε με τον διαχειριστή IT για βοήθεια.\n\nΚατάσταση εγγραφής: %1$s.</string>
+    <string name="wg_offline_ssp_install_required_message">Για να χρησιμοποιήσετε τον εταιρικό ή σχολικό λογαριασμό σας με αυτή την εφαρμογή, πρέπει να εγκαταστήσετε την εφαρμογή Εταιρική πύλη του Microsoft Intune. Πατήστε “Μετάβαση στο Store” για να συνεχίσετε.</string>
+    <string name="wg_offline_ssp_install_required_message_ngms">Για να χρησιμοποιήσετε τον εταιρικό ή σχολικό λογαριασμό σας με αυτήν την εφαρμογή, πρέπει να εγκαταστήσετε την εφαρμογή Εταιρική πύλη του Microsoft Intune. Επιλέξτε \"Μάθετε περισσότερα\" για να προσδιορίσετε από πού μπορείτε να λάβετε την εφαρμογή Εταιρική πύλη.</string>
+    <string name="wg_offline_ssp_removed_notify_system_wipe">Ο οργανισμός σας έχει καταργήσει τα δεδομένα του που σχετίζονται με αυτή την εφαρμογή, επειδή τα δεδομένα ή η εφαρμογή Εταιρικής πύλης του Microsoft Intune καταργήθηκαν. Αυτή η εφαρμογή θα κλείσει τώρα. Για να συνδεθείτε ξανά, πρέπει να εισέλθετε με τον εταιρικό ή σχολικό λογαριασμό σας.</string>
+    <string name="wg_offline_ssp_removed_notify_wipe">Ο οργανισμός σας έχει καταργήσει τα δεδομένα του που σχετίζονται με αυτή την εφαρμογή, επειδή τα δεδομένα ή η εφαρμογή Εταιρικής πύλης του Microsoft Intune καταργήθηκαν. Για επανασύνδεση, πρέπει να εισέλθετε με τον εταιρικό ή σχολικό λογαριασμό σας.</string>
+</resources>

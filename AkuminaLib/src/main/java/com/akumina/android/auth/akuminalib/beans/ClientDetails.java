@@ -2,7 +2,7 @@ package com.akumina.android.auth.akuminalib.beans;
 
 public class ClientDetails {
 
-    private  String authority,clientId,redirectUri,sharePointScope,appManagerURL,tenantId;
+    private  String authority,clientId,redirectUri,sharePointScope,appManagerURL,tenantId,userName;
     private  String[] scopes;
 
     public  ClientDetails() {
@@ -74,4 +74,11 @@ public class ClientDetails {
         this.scopes = scopes;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 }

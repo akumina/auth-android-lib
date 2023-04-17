@@ -1,0 +1,117 @@
+Signature-Version: 1.0
+SHA-256-Digest-Manifest-Main-Attributes: u753HJxN1Eto/mAwQLtMdk4wN0BtT
+ FhFqfTAVgfQLdE=
+SHA-256-Digest-Manifest: Gj5CcLPZMjzz0tCj68ClJemWjG3e9QthwItvA/R7TLE=
+Created-By: 1.8.0_112 (Oracle Corporation)
+
+Name: res/values-el/values-el.xml
+SHA-256-Digest: kvUoawyDabkyNlmn8exzoo1APHp8py/L2T5toGxqqdY=
+
+Name: AndroidManifest.xml
+SHA-256-Digest: YlE+7hBXfLir2fqEpN08UlmSZPSGhgkaTwmJDRgra88=
+
+Name: res/values-cs/values-cs.xml
+SHA-256-Digest: wQ0UBpVIw1cwQfZm+3qhVoKUTw3oqNSu8f+y9ECioik=
+
+Name: res/values-hu/values-hu.xml
+SHA-256-Digest: otDQGN9Bvj8S6M79JJf9Um3plje24tShuHGAJPZS+ds=
+
+Name: res/values-pt-rPT/values-pt-rPT.xml
+SHA-256-Digest: TjbRN5XKqQvg9EkfbJhFUceyV4j+oo/YoehMwUbXuw8=
+
+Name: res/values-da/values-da.xml
+SHA-256-Digest: 9Wh+VWdIQi1z5n2I5mWpT/nCtqehKmdqnQVbk5v6XuI=
+
+Name: res/values-nb/values-nb.xml
+SHA-256-Digest: EiNVotkuljb4XBbnAetvjiJeKoZdkfznVzKt6cokU2o=
+
+Name: res/values-ja/values-ja.xml
+SHA-256-Digest: o+w5w1Ic0b4LQxxMiX6bawAvEnrs73wcQsEViH7O9N8=
+
+Name: res/values-sv/values-sv.xml
+SHA-256-Digest: EZYDBGutW3GJzBQigCzOOJv822NadVGAn48kLNbsUBY=
+
+Name: R.txt
+SHA-256-Digest: 6fTPbK+jdDL2aOClP910xv0Qmebz1PPGRmgFq6fn44U=
+
+Name: res/values-hr/values-hr.xml
+SHA-256-Digest: mYGSTtTMcBs44biQsWCeiAWzVPjx3e/dlRENvqc4Gtc=
+
+Name: res/drawable/offline_startup_app_icon_container.xml
+SHA-256-Digest: +s4bjN2SwrQ/Tmp5Sh1HfcbTdTLZBnjzozxD2gZ1ruE=
+
+Name: res/values-tr/values-tr.xml
+SHA-256-Digest: zs/2DjAuOK9HtAVfHJBZUIuoGIi8l7dBZ09X14rkLf4=
+
+Name: res/raw/intune_mam_manifest.xml
+SHA-256-Digest: G/Vj3JS9IYODx3W0WZ1wblJBXIE67fzRkUBpZBVzKB4=
+
+Name: res/values-v24/values-v24.xml
+SHA-256-Digest: xyR82lGiKp/9MB25cORudFI6B0Mn9jsK2LiUthYT0dE=
+
+Name: res/values-fr/values-fr.xml
+SHA-256-Digest: QnSuCIK/hu3e7mw1uHizrKBosc9/UozpBoG+XfINlrU=
+
+Name: res/values-ro/values-ro.xml
+SHA-256-Digest: w+s99vuyBaOzLzpmeAJJLJe4TyBp7Sq+xgcMo3LtmmY=
+
+Name: res/values-ru/values-ru.xml
+SHA-256-Digest: XESgtf3Ts6KhNHw84U9U/PXZvYQr9xdovv2Jn8th9Vs=
+
+Name: res/values-fi/values-fi.xml
+SHA-256-Digest: tcxGOsLO9IbaSh3DdEN0vQ9hJRm4b7z6NGTTMteICWE=
+
+Name: classes.jar
+SHA-256-Digest: XvpMPGyMgNvUYmVQwc5jmlPEhVgEm2UPU1UlSgu6CaU=
+
+Name: res/values/values.xml
+SHA-256-Digest: Xqd83xejj9HBma5cM/UzeU4IQdhizmdc8gPjBrwNdbY=
+
+Name: res/values-pl/values-pl.xml
+SHA-256-Digest: 0Z1euTM0IcZmapCR2iwmJaGATajVAxncVEzX0joXQNY=
+
+Name: res/values-it/values-it.xml
+SHA-256-Digest: UgZ01HxVRMLeh8H90NPOfm3A8jsP/XJdj9t7+gSrmis=
+
+Name: res/values-vi/values-vi.xml
+SHA-256-Digest: bom0t5v7iJMaShsZuq7mfwvPHf8f/wiA1jeja9Q0jOc=
+
+Name: res/values-th/values-th.xml
+SHA-256-Digest: y1iCddUp9vsZEaySnjSTjmTGGTjUXOyhYVV4MAJwI4o=
+
+Name: res/values-de/values-de.xml
+SHA-256-Digest: UhLjEFjG74JBn5Jtxmi6FtYfmWExnk2geD13HghIqeU=
+
+Name: res/values-zh/values-zh.xml
+SHA-256-Digest: aVUPs1Yy/lG+dpqx6+Pe2av1fVm8F3q92WwGQGmSLmo=
+
+Name: res/values-v21/values-v21.xml
+SHA-256-Digest: ylWrCPRjNH4+TgcC03kk2Zee0ngiB5LvDGgFH9Y3qco=
+
+Name: proguard.txt
+SHA-256-Digest: f3QWR+8ZwxzihTus61irBWAj4Ia0MQsb7DOjXV4oIwo=
+
+Name: res/values-es/values-es.xml
+SHA-256-Digest: eXhOQxyYzr86w4DN+nQX6Rlkb9ncuVaXDl9bpnTMLsk=
+
+Name: res/values-zh-rTW/values-zh-rTW.xml
+SHA-256-Digest: 54MKF54Ur84rwyzLEEEr4JtIIMu49l4ry0xdBfwlZZI=
+
+Name: res/values-pt/values-pt.xml
+SHA-256-Digest: duKBI27R+nbCFHgP+vlATg6bWpSeHvCO9dfE944rlKg=
+
+Name: META-INF/com/android/build/gradle/aar-metadata.properties
+SHA-256-Digest: ruLP00/71ifB5aeuiBe0owiZnkMeTbTElI8Co8UPTDI=
+
+Name: res/layout/wg_offline_startup_blocked.xml
+SHA-256-Digest: PaPy69+LrZ+CFOsijLO2/leRBRoWTmDFQY9frBle1TE=
+
+Name: res/values-nl/values-nl.xml
+SHA-256-Digest: F315doDKtrckucXmWUVPvR2dbsAWyJGYpZ7lNM+DXw0=
+
+Name: res/values-in/values-in.xml
+SHA-256-Digest: fS8pfCNAuuQzV6meXw+JUHnE2Ba3J9f84Lk0pO3k7QQ=
+
+Name: res/values-ko/values-ko.xml
+SHA-256-Digest: NHmFgiFid34lbvUOgm9y3yaaokR58n0y4RpupBsR5ZM=
+

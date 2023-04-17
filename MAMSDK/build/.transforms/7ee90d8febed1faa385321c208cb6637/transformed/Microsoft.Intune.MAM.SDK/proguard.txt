@@ -1,0 +1,62 @@
+# Classes go across ClassLoader boundaries must have the same name in the app and in the Company Portal app.
+# These mainly include:
+#     Interfaces in AppClient.Interface that have online and offline impls
+#     Classes that are in the function signature of above Interfaces
+#     Anything that's created directly by calling InterProxy.proxy()
+
+# Understand the @Keep support annotation.
+-keep class androidx.annotation.Keep
+-keep @androidx.annotation.Keep class * {*;}
+# Keep MAM classes that implement a @Keep-annotated interface. Otherwise, R8 performs undesirable optimizations
+# if the interface has only one compile-time implementation (e.g. R8 adds logic to cast instances of the
+# interface to the one known compile-time implementation, which breaks online MAM behavior).
+-keep,allowobfuscation class com.microsoft.intune.mam.** implements @androidx.annotation.Keep ** {*;}
+
+-keepclasseswithmembers class com.microsoft.intune.mam.** {
+    @androidx.annotation.Keep <methods>;
+}
+
+-keepclasseswithmembers class com.microsoft.intune.mam.** {
+    @androidx.annotation.Keep <fields>;
+}
+
+-keepclasseswithmembers class com.microsoft.intune.mam.** {
+    @androidx.annotation.Keep <init>(...);
+}
+
+# keepnames and classes without @Keep annotation available
+-keepnames class com.microsoft.intune.mam.**MAMStrictCheck { *; }
+-keep class com.microsoft.intune.mam.**MamificationMetadata { *; }
+-keep class com.microsoft.intune.mam.**SecureBrowserPolicy { *; }
+-keep class com.microsoft.intune.mam.**.v4.**Hooked* { *; }
+-keep class com.microsoft.intune.mam.**.v4.**Behavior { *; }
+
+# Wrapper classes since PrintHelper and NotificationManagerCompat can't go across IPC boundary
+-keep class com.microsoft.intune.mam.client.support.v4.print.PrintHelperWrapper { *; }
+-keep class com.microsoft.intune.mam.client.support.v4.app.NotificationManagerCompatWrapper { *; }
+
+# LayoutInterceptor finds classes in the app's class loader by name
+-keep class com.microsoft.intune.mam.client.widget.* { *; }
+# MAMAppCompatActivity is specially handled in ActivityBehaviorImpl.attachBaseContext
+-keepnames class com.microsoft.intune.mam.client.support.v7.app.MAMAppCompatActivity { *; }
+
+# Keep partial package names so MAM logger can filter correctly
+-keeppackagenames com.microsoft.intune.mam
+
+-keepattributes Exceptions
+
+# Do not change support library text view names to ensure that we intercept their inflation properly
+-keepnames class android.support.text.emoji.widget.EmojiAppCompatEditText
+-keepnames class android.support.text.emoji.widget.EmojiAppCompatTextView
+-keepnames class android.support.text.emoji.widget.EmojiEditText
+-keepnames class android.support.text.emoji.widget.EmojiTextView
+-keepnames class android.support.v17.leanback.widget.SearchEditText
+-keepnames class android.support.v7.widget.AppCompatAutoCompleteTextView
+-keepnames class android.support.v7.widget.AppCompatCheckedTextView
+-keepnames class android.support.v7.widget.AppCompatEditText
+-keepnames class android.support.v7.widget.AppCompatMultiAutoCompleteTextView
+-keepnames class android.support.v7.widget.AppCompatTextView
+
+# Do not mark classes and methods final or private, as we need to create proxy
+# at runtime.
+-optimizations !class/marking/final,!method/marking/private

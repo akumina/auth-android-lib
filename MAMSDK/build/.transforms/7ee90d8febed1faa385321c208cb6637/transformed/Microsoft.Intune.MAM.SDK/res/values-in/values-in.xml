@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intune_account_disallowed">Organisasi Anda tidak mengizinkan akun ini untuk masuk ke aplikasi ini.</string>
+    <string name="intune_account_disallowed_fmt">Organisasi Anda tidak mengizinkan akun ini untuk masuk ke aplikasi ini.\n\n%1$s tidak akan ditambahkan.</string>
+    <string name="intune_account_removed_fmt">Organisasi Anda tidak mengizinkan akun ini untuk masuk ke aplikasi ini.\n\n%1$s akan dihapus.</string>
+    <string name="intune_allowed_account_explanation">Organisasi Anda hanya mengizinkan akun tertentu untuk masuk ke aplikasi ini.</string>
+    <string name="intune_allowed_accounts_description">Hanya akun terdaftar yang dapat masuk.</string>
+    <string name="intune_allowed_accounts_explanation_all_added">Semua akun yang diizinkan oleh organisasi Anda telah masuk.</string>
+    <string name="intune_allowed_accounts_title">Akun yang Diizinkan</string>
+    <string name="wg_offline_branding_managed_by">Dikelola oleh organisasi Anda</string>
+    <string name="wg_offline_cancel">Batal</string>
+    <string name="wg_offline_close">Tutup</string>
+    <string name="wg_offline_get_the_app">Buka Store</string>
+    <string name="wg_offline_go_back">Kembali</string>
+    <string name="wg_offline_initialization_failure">Ada masalah saat meluncurkan aplikasi Anda. Coba perbarui aplikasi atau aplikasi Microsoft Intune Company Portal. Jika memerlukan bantuan, hubungi administrator TI Anda.</string>
+    <string name="wg_offline_learn_more">Pelajari Selengkapnya</string>
+    <string name="wg_offline_mamca_failed_message">Aplikasi ini tidak dapat dilindungi karena koneksi dengan layanan tidak selesai. Silakan coba lagi.</string>
+    <string name="wg_offline_mamca_failed_title">Coba Lagi</string>
+    <string name="wg_offline_must_restart">Departemen TI Anda kini sedang membantu Anda melindungi data kerja atau sekolah di aplikasi ini. Mulai ulang aplikasi untuk melanjutkan.</string>
+    <string name="wg_offline_ok">OKE</string>
+    <string name="wg_offline_policy_required_message">Aplikasi ini belum diatur untuk Anda gunakan. Hubungi administrator TI Anda untuk bantuan.</string>
+    <string name="wg_offline_sharing_blocked_dialog_text">Organisasi Anda tidak mengizinkan tindakan berbagi ini.</string>
+    <string name="wg_offline_sharing_blocked_dialog_title">Berbagi tidak diizinkan</string>
+    <string name="wg_offline_show_diagnostics_message">Info diagnostik tidak tersedia untuk perangkat ini. Hubungi administrator TI Anda untuk bantuan.\n\nStatus Pendaftaran: %1$s.</string>
+    <string name="wg_offline_ssp_install_required_message">Untuk menggunakan akun kerja atau sekolah dengan aplikasi ini, Anda harus menginstal aplikasi Microsoft Intune Company Portal. Ketuk \"Buka store\" untuk melanjutkan.</string>
+    <string name="wg_offline_ssp_install_required_message_ngms">Untuk menggunakan akun kerja atau sekolah dengan aplikasi ini, Anda harus menginstal aplikasi Microsoft Intune Company Portal. Pilih \"Pelajari Selengkapnya\" untuk menentukan dari mana Anda bisa mendapatkan aplikasi Company Portal.</string>
+    <string name="wg_offline_ssp_removed_notify_system_wipe">Organisasi Anda telah menghapus datanya yang terkait dengan aplikasi ini karena data atau aplikasi Microsoft Intune Company Portal dihapus. Aplikasi ini sekarang akan ditutup. Untuk menyambung kembali, Anda harus masuk dengan akun kerja atau sekolah.</string>
+    <string name="wg_offline_ssp_removed_notify_wipe">Organisasi Anda telah menghapus datanya yang terkait dengan aplikasi ini karena data atau aplikasi Microsoft Intune Company Portal dihapus. Untuk menyambung kembali, Anda harus masuk dengan akun kerja atau sekolah.</string>
+</resources>
