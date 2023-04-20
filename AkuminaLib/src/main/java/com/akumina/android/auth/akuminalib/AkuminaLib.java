@@ -7,7 +7,9 @@ import com.akumina.android.auth.akuminalib.beans.ClientDetails;
 import com.akumina.android.auth.akuminalib.impl.AuthenticationHandler;
 import com.akumina.android.auth.akuminalib.listener.ApplicationListener;
 import com.akumina.android.auth.akuminalib.msal.MSALUtils;
+import com.akumina.android.auth.akuminalib.utils.TokenType;
 import com.microsoft.identity.client.IPublicClientApplication;
+import com.microsoft.identity.client.exception.MsalException;
 
 import java.util.logging.Logger;
 
@@ -41,5 +43,12 @@ public final class AkuminaLib {
                                            ApplicationListener applicationListener) throws Exception {
         MSALUtils.getInstance().createMAMEnrollmentManager();
         MSALUtils.getInstance().acquireToken(activity, clientDetails, authenticationHandler, applicationListener,true);
+    }
+
+    public  void signOut() throws Exception {
+        MSALUtils.getInstance().signOutAccount();
+    }
+    public String getToken(TokenType tokenType){
+        return MSALUtils.getInstance().getToken(tokenType);
     }
 }

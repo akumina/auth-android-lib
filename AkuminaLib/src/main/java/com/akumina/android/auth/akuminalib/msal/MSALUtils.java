@@ -16,6 +16,7 @@ import com.akumina.android.auth.akuminalib.impl.OnApplicationListener;
 import com.akumina.android.auth.akuminalib.listener.ApplicationListener;
 import com.akumina.android.auth.akuminalib.utils.Constants;
 import com.akumina.android.auth.akuminalib.utils.HttpUtils;
+import com.akumina.android.auth.akuminalib.utils.TokenType;
 import com.akumina.android.auth.akuminalib.utils.Utils;
 import com.akumina.android.auth.akuminalib.utils.ValidationUtils;
 import com.google.gson.Gson;
@@ -32,6 +33,7 @@ import com.microsoft.identity.client.PublicClientApplication;
 import com.microsoft.identity.client.SilentAuthenticationCallback;
 import com.microsoft.identity.client.exception.MsalException;
 import com.microsoft.identity.client.exception.MsalUiRequiredException;
+import com.microsoft.identity.common.internal.util.StringUtil;
 import com.microsoft.intune.mam.client.app.MAMComponents;
 import com.microsoft.intune.mam.policy.MAMEnrollmentManager;
 import com.microsoft.intune.mam.policy.MAMServiceAuthenticationCallback;
@@ -72,6 +74,12 @@ public class MSALUtils {
 
     private ApplicationListener applicationListener;
 
+    private String graphToken;
+
+    private String sharePointToken;
+
+    private String akuminaToken;
+
     private MSALUtils() {
         mamEnrollmentManager = MAMComponents.get(MAMEnrollmentManager.class);
     }
@@ -87,7 +95,11 @@ public class MSALUtils {
         if (ValidationUtils.isNull(appContext)) {
             throw new IllegalStateException("Context is null");
         }
-        return MAMComponents.get(MAMEnrollmentManager.class);
+        MAMEnrollmentManager manager =  MAMComponents.get(MAMEnrollmentManager.class);
+
+        mamEnrollmentManager = manager;
+
+        return mamEnrollmentManager;
     }
 
     private  void acquireTokenSilent(String aadId, @NonNull final AuthenticationHandler handler,
@@ -340,7 +352,7 @@ public class MSALUtils {
     }
 
 
-    public  void signOutAccount(@NonNull final String aadId) throws MsalException, InterruptedException {
+    public  void signOutAccount() throws Exception {
 
         if(ValidationUtils.isNull(clientDetails)) {
             throw new IllegalAccessError("Client Details is null");
@@ -350,10 +362,10 @@ public class MSALUtils {
         }
         initializeMsalClientApplication(clientDetails, applicationListener);
 
-        final IAccount account = getAccount(aadId);
+        final IAccount account = getAccount(clientDetails.getUserName());
 
         if (account == null) {
-            LOGGER.warning("Failed to sign out account: No account found for " + aadId);
+            LOGGER.warning("Failed to sign out account: No account found for " + clientDetails.getUserName());
             return;
         }
 
@@ -367,6 +379,20 @@ public class MSALUtils {
                     (ISingleAccountPublicClientApplication) mMsalClientApplication;
 
             singleAccountPCA.signOut();
+        }
+    }
+
+    public String getToken(TokenType tokenType) {
+
+        if(tokenType.equals(TokenType.GRAPH)) {
+            ValidationUtils.isEmpty(graphToken, "Graph Token is empty");
+            return  graphToken;
+        }else if (tokenType.equals(TokenType.AKUMINA)) {
+            ValidationUtils.isEmpty(akuminaToken, "Akumina Token is empty");
+            return  akuminaToken;
+        }else {
+            ValidationUtils.isEmpty(sharePointToken, "Sharepoint Token is empty");
+            return  sharePointToken;
         }
     }
 }
