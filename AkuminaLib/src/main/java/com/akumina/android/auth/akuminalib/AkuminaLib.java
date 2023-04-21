@@ -33,7 +33,7 @@ public final class AkuminaLib {
     public void authenticateWithMSAL(Activity activity, ClientDetails clientDetails,
                                      AuthenticationHandler authenticationHandler, ApplicationListener applicationListener)
             throws Exception {
-        MSALUtils.getInstance().createMAMEnrollmentManager();
+//        MSALUtils.getInstance().createMAMEnrollmentManager();
         MSALUtils.getInstance().acquireToken(activity, clientDetails, authenticationHandler, applicationListener,false);
     }
 

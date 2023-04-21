@@ -299,9 +299,9 @@ public class MSALUtils {
         return mamEnrollmentManager;
     }
 
-    public void setMamEnrollmentManager(MAMEnrollmentManager mamEnrollmentManager) {
-        this.mamEnrollmentManager = mamEnrollmentManager;
-    }
+//    public void setMamEnrollmentManager(MAMEnrollmentManager mamEnrollmentManager) {
+//        this.mamEnrollmentManager = mamEnrollmentManager;
+//    }
 
     public Context getAppContext() {
         return appContext;

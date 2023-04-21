@@ -2,10 +2,9 @@ plugins {
     id 'com.android.library'
 
 }
-//apply plugin: 'com.microsoft.intune.mam'
 
 group = 'com.github.akumina'
-version = '1.0'
+version = '1.1'
 
 android {
     namespace 'com.akumina.android.auth.akuminalib'
