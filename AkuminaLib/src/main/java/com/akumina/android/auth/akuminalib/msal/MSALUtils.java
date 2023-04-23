@@ -38,6 +38,7 @@ import com.microsoft.intune.mam.client.app.MAMComponents;
 import com.microsoft.intune.mam.policy.MAMEnrollmentManager;
 import com.microsoft.intune.mam.policy.MAMServiceAuthenticationCallback;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -79,6 +80,8 @@ public class MSALUtils {
     private String sharePointToken;
 
     private String akuminaToken;
+
+    private int configFile;
 
     private MSALUtils() {
         mamEnrollmentManager = MAMComponents.get(MAMEnrollmentManager.class);
@@ -135,13 +138,15 @@ public class MSALUtils {
         mMsalClientApplication.acquireTokenSilentAsync(params);
     }
     @WorkerThread
-    public void acquireToken(Activity activity, ClientDetails clientDetails, @NonNull final AuthenticationHandler handler,
-                             ApplicationListener applicationListener, boolean mamEnrollment)
+    public void acquireToken(Activity activity, @NonNull final AuthenticationHandler handler,
+                             ApplicationListener applicationListener, boolean mamEnrollment,
+                             int configFile)
             throws MsalException, InterruptedException {
         this.mamEnrollment = mamEnrollment;
+        this.configFile = configFile;
         setAppContext(activity.getApplicationContext());
 
-        initializeMsalClientApplication(clientDetails, applicationListener);
+        initializeMsalClientApplication(applicationListener);
 
         AppAccount appAccount = AppSettings.getAccount(appContext);
 
@@ -263,7 +268,7 @@ public class MSALUtils {
                 });
     }
 
-    private synchronized void initializeMsalClientApplication(ClientDetails clientDetails,
+    private synchronized void initializeMsalClientApplication(
                                                               ApplicationListener applicationListener)
             throws MsalException, InterruptedException {
         if (ValidationUtils.isNull(appContext)) {
@@ -278,8 +283,11 @@ public class MSALUtils {
             msalLogger.setEnableLogcatLog(true);
             msalLogger.setLogLevel(com.microsoft.identity.client.Logger.LogLevel.VERBOSE);
             msalLogger.setEnablePII(true);
-            PublicClientApplication.create(appContext, clientDetails.getClientId(),
-                    clientDetails.getAuthority(), clientDetails.getRedirectUri(), new OnApplicationListener(applicationListener));
+
+           this.mMsalClientApplication =   PublicClientApplication.create(appContext,configFile);
+
+//            PublicClientApplication.create(appContext, clientDetails.getClientId(),
+//                    clientDetails.getAuthority(), clientDetails.getRedirectUri(), new OnApplicationListener(applicationListener));
         }
     }
 
@@ -360,7 +368,7 @@ public class MSALUtils {
         if(ValidationUtils.isNull(applicationListener)) {
             throw new IllegalAccessError("Application is null");
         }
-        initializeMsalClientApplication(clientDetails, applicationListener);
+        initializeMsalClientApplication(applicationListener);
 
         final IAccount account = getAccount(clientDetails.getUserName());
 
