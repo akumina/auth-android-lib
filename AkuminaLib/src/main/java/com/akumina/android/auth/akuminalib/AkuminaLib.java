@@ -30,19 +30,20 @@ public final class AkuminaLib {
         return akuminaLib;
     }
 
-    public void authenticateWithMSAL(Activity activity, int configFile,
+    public void authenticateWithMSAL(Activity activity, int configFile, ClientDetails clientDetails,
                                      AuthenticationHandler authenticationHandler, ApplicationListener applicationListener)
             throws Exception {
 //        MSALUtils.getInstance().createMAMEnrollmentManager();
-        MSALUtils.getInstance().acquireToken(activity, authenticationHandler, applicationListener,false, configFile);
+        MSALUtils.getInstance().acquireToken(activity, authenticationHandler, applicationListener,false, configFile,clientDetails);
     }
 
     public void authenticateWithMSALAndMAM(Activity activity,
                                            int configFile,
+                                           ClientDetails clientDetails,
                                            AuthenticationHandler authenticationHandler,
                                            ApplicationListener applicationListener) throws Exception {
         MSALUtils.getInstance().createMAMEnrollmentManager();
-        MSALUtils.getInstance().acquireToken(activity,authenticationHandler, applicationListener,true, configFile);
+        MSALUtils.getInstance().acquireToken(activity,authenticationHandler, applicationListener,true, configFile,clientDetails);
     }
 
     public  void signOut() throws Exception {

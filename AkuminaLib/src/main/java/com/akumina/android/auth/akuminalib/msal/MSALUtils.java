@@ -140,10 +140,11 @@ public class MSALUtils {
     @WorkerThread
     public void acquireToken(Activity activity, @NonNull final AuthenticationHandler handler,
                              ApplicationListener applicationListener, boolean mamEnrollment,
-                             int configFile)
+                             int configFile, ClientDetails clientDetails)
             throws MsalException, InterruptedException {
         this.mamEnrollment = mamEnrollment;
         this.configFile = configFile;
+        this.clientDetails =  clientDetails;
         setAppContext(activity.getApplicationContext());
 
         initializeMsalClientApplication(applicationListener);
