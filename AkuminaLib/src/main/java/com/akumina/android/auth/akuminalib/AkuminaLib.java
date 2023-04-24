@@ -6,11 +6,13 @@ import android.content.Context;
 import com.akumina.android.auth.akuminalib.beans.ClientDetails;
 import com.akumina.android.auth.akuminalib.impl.AuthenticationHandler;
 import com.akumina.android.auth.akuminalib.listener.ApplicationListener;
+import com.akumina.android.auth.akuminalib.msal.AuthFile;
 import com.akumina.android.auth.akuminalib.msal.MSALUtils;
 import com.akumina.android.auth.akuminalib.utils.TokenType;
 import com.microsoft.identity.client.IPublicClientApplication;
 import com.microsoft.identity.client.exception.MsalException;
 
+import java.io.File;
 import java.util.logging.Logger;
 
 public final class AkuminaLib {
@@ -30,22 +32,20 @@ public final class AkuminaLib {
         return akuminaLib;
     }
 
-    public void authenticateWithMSAL(Activity activity, int configFile, ClientDetails clientDetails,
+    public void authenticateWithMSAL(Activity activity, AuthFile authFile, ClientDetails clientDetails,
                                      AuthenticationHandler authenticationHandler, ApplicationListener applicationListener)
             throws Exception {
 //        MSALUtils.getInstance().createMAMEnrollmentManager();
-        MSALUtils.getInstance().acquireToken(activity, authenticationHandler, applicationListener,false, configFile,clientDetails);
+        MSALUtils.getInstance().acquireToken(activity, authenticationHandler,false, authFile,clientDetails);
     }
 
     public void authenticateWithMSALAndMAM(Activity activity,
-                                           int configFile,
+                                           AuthFile authFile,
                                            ClientDetails clientDetails,
-                                           AuthenticationHandler authenticationHandler,
-                                           ApplicationListener applicationListener) throws Exception {
+                                           AuthenticationHandler authenticationHandler) throws Exception {
         MSALUtils.getInstance().createMAMEnrollmentManager();
-        MSALUtils.getInstance().acquireToken(activity,authenticationHandler, applicationListener,true, configFile,clientDetails);
+        MSALUtils.getInstance().acquireToken(activity,authenticationHandler, true, authFile,clientDetails);
     }
-
     public  void signOut() throws Exception {
         MSALUtils.getInstance().signOutAccount();
     }

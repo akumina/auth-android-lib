@@ -2,6 +2,8 @@ package com.akumina.android.auth.akuminalib.msal;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
@@ -12,7 +14,6 @@ import com.akumina.android.auth.akuminalib.data.AppSettings;
 import com.akumina.android.auth.akuminalib.http.ResponseHandler;
 import com.akumina.android.auth.akuminalib.http.SaveTokenResponseHandler;
 import com.akumina.android.auth.akuminalib.impl.AuthenticationHandler;
-import com.akumina.android.auth.akuminalib.impl.OnApplicationListener;
 import com.akumina.android.auth.akuminalib.listener.ApplicationListener;
 import com.akumina.android.auth.akuminalib.utils.Constants;
 import com.akumina.android.auth.akuminalib.utils.HttpUtils;
@@ -33,12 +34,10 @@ import com.microsoft.identity.client.PublicClientApplication;
 import com.microsoft.identity.client.SilentAuthenticationCallback;
 import com.microsoft.identity.client.exception.MsalException;
 import com.microsoft.identity.client.exception.MsalUiRequiredException;
-import com.microsoft.identity.common.internal.util.StringUtil;
 import com.microsoft.intune.mam.client.app.MAMComponents;
 import com.microsoft.intune.mam.policy.MAMEnrollmentManager;
 import com.microsoft.intune.mam.policy.MAMServiceAuthenticationCallback;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -79,9 +78,7 @@ public class MSALUtils {
 
     private String sharePointToken;
 
-    private String akuminaToken;
-
-    private int configFile;
+    private AuthFile configFile;
 
     private MSALUtils() {
         mamEnrollmentManager = MAMComponents.get(MAMEnrollmentManager.class);
@@ -105,8 +102,7 @@ public class MSALUtils {
         return mamEnrollmentManager;
     }
 
-    private  void acquireTokenSilent(String aadId, @NonNull final AuthenticationHandler handler,
-                                    ApplicationListener applicationListener)
+    private  void acquireTokenSilent(String aadId, @NonNull final AuthenticationHandler handler)
             throws MsalException, InterruptedException {
 
         final IAccount account = getAccount(aadId);
@@ -138,9 +134,8 @@ public class MSALUtils {
         mMsalClientApplication.acquireTokenSilentAsync(params);
     }
     @WorkerThread
-    public void acquireToken(Activity activity, @NonNull final AuthenticationHandler handler,
-                             ApplicationListener applicationListener, boolean mamEnrollment,
-                             int configFile, ClientDetails clientDetails)
+    public void acquireToken(Activity activity, @NonNull final AuthenticationHandler handler, boolean mamEnrollment,
+                             AuthFile configFile, ClientDetails clientDetails)
             throws MsalException, InterruptedException {
         this.mamEnrollment = mamEnrollment;
         this.configFile = configFile;
@@ -176,7 +171,7 @@ public class MSALUtils {
                     .build();
             mMsalClientApplication.acquireToken(params);
         }else {
-            acquireTokenSilent(appAccount.getAADID(),handler,applicationListener);
+            acquireTokenSilent(appAccount.getAADID(),handler);
         }
     }
 
@@ -188,7 +183,7 @@ public class MSALUtils {
         final String authorityURL = account.getAuthority();
         String message = "Authentication succeeded for user " + upn + " token =" + result.getAccessToken();
         LOGGER.info(message);
-
+        this.graphToken = result.getAccessToken();
         Map<String, String> graphParams = new Hashtable<>();
         graphParams.put("resource", clientDetails.getScopes()[0].replace(".default", ""));
         graphParams.put("id_token", result.getAccount().getIdToken());
@@ -218,6 +213,7 @@ public class MSALUtils {
         spParams.put("expires_on", String.valueOf(authenticationResult.getExpiresOn().getTime() / 1000L));
         String SHAREPOINT_SCOPE_REPLACE = clientDetails.getSharePointScope().replace(".default", "");
         String mScope = Utils.getFormattedScope(authenticationResult.getScope(), SHAREPOINT_SCOPE_REPLACE);
+        this.sharePointToken = authenticationResult.getAccessToken();
         spParams.put("scope", mScope);
         authData.add(spParams);
         Gson gson = new Gson();
@@ -285,10 +281,22 @@ public class MSALUtils {
             msalLogger.setLogLevel(com.microsoft.identity.client.Logger.LogLevel.VERBOSE);
             msalLogger.setEnablePII(true);
 
-           this.mMsalClientApplication =   PublicClientApplication.create(appContext,configFile);
+            if(!configFile.isFileBased())
+                this.mMsalClientApplication =   PublicClientApplication.create(appContext,configFile.getFileId());
+            else
+                 PublicClientApplication.create(appContext, configFile.getFile(), new IPublicClientApplication.ApplicationCreatedListener() {
+                    @Override
+                    public void onCreated(IPublicClientApplication application) {
+                        mMsalClientApplication = application;
+                    }
 
-//            PublicClientApplication.create(appContext, clientDetails.getClientId(),
-//                    clientDetails.getAuthority(), clientDetails.getRedirectUri(), new OnApplicationListener(applicationListener));
+                    @Override
+                    public void onError(MsalException exception) {
+                        Log.e("PublicClientApplication", "onError: ",  exception);
+                        Toast.makeText(appContext,"On Error occurred during sign-up", Toast.LENGTH_LONG);
+
+                    }
+                });
         }
     }
 
@@ -397,8 +405,9 @@ public class MSALUtils {
             ValidationUtils.isEmpty(graphToken, "Graph Token is empty");
             return  graphToken;
         }else if (tokenType.equals(TokenType.AKUMINA)) {
-            ValidationUtils.isEmpty(akuminaToken, "Akumina Token is empty");
-            return  akuminaToken;
+            String token = AppSettings.getToken(appContext);
+            ValidationUtils.isEmpty(token, "Akumina Token is empty");
+            return  token;
         }else {
             ValidationUtils.isEmpty(sharePointToken, "Sharepoint Token is empty");
             return  sharePointToken;
