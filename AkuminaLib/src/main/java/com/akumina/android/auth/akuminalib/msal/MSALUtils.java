@@ -3,7 +3,6 @@ package com.akumina.android.auth.akuminalib.msal;
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
@@ -14,7 +13,9 @@ import com.akumina.android.auth.akuminalib.data.AppSettings;
 import com.akumina.android.auth.akuminalib.http.ResponseHandler;
 import com.akumina.android.auth.akuminalib.http.SaveTokenResponseHandler;
 import com.akumina.android.auth.akuminalib.impl.AuthenticationHandler;
+import com.akumina.android.auth.akuminalib.listener.AkuminaTokenCallback;
 import com.akumina.android.auth.akuminalib.listener.ApplicationListener;
+import com.akumina.android.auth.akuminalib.listener.SharePointAuthCallback;
 import com.akumina.android.auth.akuminalib.utils.Constants;
 import com.akumina.android.auth.akuminalib.utils.HttpUtils;
 import com.akumina.android.auth.akuminalib.utils.TokenType;
@@ -32,6 +33,7 @@ import com.microsoft.identity.client.IPublicClientApplication;
 import com.microsoft.identity.client.ISingleAccountPublicClientApplication;
 import com.microsoft.identity.client.PublicClientApplication;
 import com.microsoft.identity.client.SilentAuthenticationCallback;
+import com.microsoft.identity.client.exception.MsalClientException;
 import com.microsoft.identity.client.exception.MsalException;
 import com.microsoft.identity.client.exception.MsalUiRequiredException;
 import com.microsoft.intune.mam.client.app.MAMComponents;
@@ -66,9 +68,9 @@ public class MSALUtils {
 
     private AppAccount mUserAccount;
 
-    private SilentAuthenticationCallback sharePointAuthCallback;
+    private SharePointAuthCallback sharePointAuthCallback;
 
-    private ResponseHandler<String> saveTokenResponseHandler;
+    private AkuminaTokenCallback akuminaTokenCallback;
 
     private boolean mamEnrollment;
 
@@ -236,7 +238,7 @@ public class MSALUtils {
 
         HttpUtils httpUtils = new HttpUtils(getAppContext());
         SaveTokenResponseHandler handler = new SaveTokenResponseHandler();
-        handler.setChild(saveTokenResponseHandler);
+        handler.setChild(akuminaTokenCallback);
         httpUtils.post(clientDetails.getAppManagerURL(), requestBody, extraHeader, handler);
 
     }
@@ -282,25 +284,37 @@ public class MSALUtils {
             msalLogger.setLogLevel(com.microsoft.identity.client.Logger.LogLevel.VERBOSE);
             msalLogger.setEnablePII(true);
 
-            if(!configFile.isFileBased()) {
+            if (!configFile.isFileBased()) {
                 this.mMsalClientApplication = PublicClientApplication.create(appContext, configFile.getFileId());
                 applicationListener.onCreated(this.mMsalClientApplication);
-            }
-            else
-                 PublicClientApplication.create(appContext, configFile.getFile(), new IPublicClientApplication.ApplicationCreatedListener() {
+                mSingleAccountApp = PublicClientApplication.createSingleAccountPublicClientApplication(appContext, configFile.getFileId());
+                LOGGER.log(Level.INFO, "mSingleAccountApp .. Init " + mSingleAccountApp);
+            } else {
+                PublicClientApplication.create(appContext, configFile.getFile(), new IPublicClientApplication.ApplicationCreatedListener() {
                     @Override
                     public void onCreated(IPublicClientApplication application) {
                         mMsalClientApplication = application;
-                        applicationListener.onCreated(application);
+                        try {
+                            mSingleAccountApp = PublicClientApplication.createSingleAccountPublicClientApplication(appContext, configFile.getFile());
+                            applicationListener.onCreated(application);
+                        }catch ( InterruptedException e) {
+                            LOGGER.log(Level.SEVERE,"createSingleAccountPublicClientApplication InterruptedException", e);
+                            onError(new MsalClientException(e.getLocalizedMessage()));
+                        }catch (MsalException e) {
+                            LOGGER.log(Level.SEVERE,"createSingleAccountPublicClientApplication ", e);
+                            onError(e);
+                        }
+
                     }
 
                     @Override
                     public void onError(MsalException exception) {
-                        Log.e("PublicClientApplication", "onError: ",  exception);
+                        Log.e("PublicClientApplication", "onError: ", exception);
                         applicationListener.onError(exception);
 
                     }
                 });
+            }
         }
     }
 
@@ -334,7 +348,10 @@ public class MSALUtils {
     }
 
     public void addAuthenticationCallback(MAMServiceAuthenticationCallback callback) {
-        this.mamEnrollmentManager.registerAuthenticationCallback(callback);
+        if(this.mamEnrollmentManager!=null)
+            this.mamEnrollmentManager.registerAuthenticationCallback(callback);
+        else
+            throw  new IllegalStateException("MAM Enrollment Manager  not initialized");
     }
 
     private IAccount getAccount(String userId) throws InterruptedException, MsalException {
@@ -360,18 +377,14 @@ public class MSALUtils {
         return account;
     }
 
-    public SilentAuthenticationCallback getSharePointAuthCallback() {
-        return sharePointAuthCallback;
-    }
 
-    public void setSharePointAuthCallback(SilentAuthenticationCallback sharePointAuthCallback) {
+    public void setSharePointAuthCallback(SharePointAuthCallback sharePointAuthCallback) {
         this.sharePointAuthCallback = sharePointAuthCallback;
     }
 
-    public void setSaveTokenResponseHandler(ResponseHandler<String> saveTokenResponseHandler) {
-        this.saveTokenResponseHandler = saveTokenResponseHandler;
+    public void setAkuminaTokenCallback(AkuminaTokenCallback akuminaTokenCallback) {
+        this.akuminaTokenCallback = akuminaTokenCallback;
     }
-
 
     public  void signOutAccount() throws Exception {
 

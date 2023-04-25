@@ -5,7 +5,9 @@ import android.content.Context;
 
 import com.akumina.android.auth.akuminalib.beans.ClientDetails;
 import com.akumina.android.auth.akuminalib.impl.AuthenticationHandler;
+import com.akumina.android.auth.akuminalib.listener.AkuminaTokenCallback;
 import com.akumina.android.auth.akuminalib.listener.ApplicationListener;
+import com.akumina.android.auth.akuminalib.listener.SharePointAuthCallback;
 import com.akumina.android.auth.akuminalib.msal.AuthFile;
 import com.akumina.android.auth.akuminalib.msal.MSALUtils;
 import com.akumina.android.auth.akuminalib.utils.TokenType;
@@ -51,5 +53,13 @@ public final class AkuminaLib {
     }
     public String getToken(TokenType tokenType){
         return MSALUtils.getInstance().getToken(tokenType);
+    }
+
+    public void setSharePointAuthCallback(SharePointAuthCallback sharePointAuthCallback) {
+        MSALUtils.getInstance().setSharePointAuthCallback(sharePointAuthCallback);
+    }
+
+    public void setAkuminaTokenCallback(AkuminaTokenCallback akuminaTokenCallback) {
+       MSALUtils.getInstance().setAkuminaTokenCallback(akuminaTokenCallback);
     }
 }
