@@ -36,15 +36,15 @@ public final class AkuminaLib {
                                      AuthenticationHandler authenticationHandler, ApplicationListener applicationListener)
             throws Exception {
 //        MSALUtils.getInstance().createMAMEnrollmentManager();
-        MSALUtils.getInstance().acquireToken(activity, authenticationHandler,false, authFile,clientDetails);
+        MSALUtils.getInstance().acquireToken(activity, authenticationHandler,false, authFile,clientDetails, applicationListener);
     }
 
     public void authenticateWithMSALAndMAM(Activity activity,
                                            AuthFile authFile,
                                            ClientDetails clientDetails,
-                                           AuthenticationHandler authenticationHandler) throws Exception {
+                                           AuthenticationHandler authenticationHandler,  ApplicationListener applicationListener) throws Exception {
         MSALUtils.getInstance().createMAMEnrollmentManager();
-        MSALUtils.getInstance().acquireToken(activity,authenticationHandler, true, authFile,clientDetails);
+        MSALUtils.getInstance().acquireToken(activity,authenticationHandler, true, authFile,clientDetails, applicationListener);
     }
     public  void signOut() throws Exception {
         MSALUtils.getInstance().signOutAccount();

@@ -110,6 +110,7 @@ public class MSALUtils {
             LOGGER.severe("Failed to acquire token: no account found for " + aadId);
             handler.onError(
                     new MsalUiRequiredException(MsalUiRequiredException.NO_ACCOUNT_FOUND, "no account found for " + aadId));
+
             return;
         }
 
@@ -135,7 +136,7 @@ public class MSALUtils {
     }
     @WorkerThread
     public void acquireToken(Activity activity, @NonNull final AuthenticationHandler handler, boolean mamEnrollment,
-                             AuthFile configFile, ClientDetails clientDetails)
+                             AuthFile configFile, ClientDetails clientDetails,  ApplicationListener applicationListener)
             throws MsalException, InterruptedException {
         this.mamEnrollment = mamEnrollment;
         this.configFile = configFile;
@@ -281,19 +282,22 @@ public class MSALUtils {
             msalLogger.setLogLevel(com.microsoft.identity.client.Logger.LogLevel.VERBOSE);
             msalLogger.setEnablePII(true);
 
-            if(!configFile.isFileBased())
-                this.mMsalClientApplication =   PublicClientApplication.create(appContext,configFile.getFileId());
+            if(!configFile.isFileBased()) {
+                this.mMsalClientApplication = PublicClientApplication.create(appContext, configFile.getFileId());
+                applicationListener.onCreated(this.mMsalClientApplication);
+            }
             else
                  PublicClientApplication.create(appContext, configFile.getFile(), new IPublicClientApplication.ApplicationCreatedListener() {
                     @Override
                     public void onCreated(IPublicClientApplication application) {
                         mMsalClientApplication = application;
+                        applicationListener.onCreated(application);
                     }
 
                     @Override
                     public void onError(MsalException exception) {
                         Log.e("PublicClientApplication", "onError: ",  exception);
-                        Toast.makeText(appContext,"On Error occurred during sign-up", Toast.LENGTH_LONG);
+                        applicationListener.onError(exception);
 
                     }
                 });
