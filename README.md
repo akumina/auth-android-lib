@@ -17,7 +17,7 @@ it, simply add the following line to your build gradle:
         
         maven { url 'https://jitpack.io' }
         
-    #### Download com.microsoft.intune.mam.build.jar file http://github.com – [GitHub](https://github.com/akumina/auth-android-lib/blob/main/MAMSDK/com.microsoft.intune.mam.build.jar)  and add into dependencies 
+  #### Download com.microsoft.intune.mam.build.jar file http://github.com – [GitHub](https://github.com/akumina/auth-android-lib/blob/main/MAMSDK/com.microsoft.intune.mam.build.jar)  and add into dependencies 
     
     classpath files("app/MAMSDK/com.microsoft.intune.mam.build.jar")
     
