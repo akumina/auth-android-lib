@@ -10,11 +10,11 @@ import androidx.annotation.WorkerThread;
 import com.akumina.android.auth.akuminalib.beans.ClientDetails;
 import com.akumina.android.auth.akuminalib.data.AppAccount;
 import com.akumina.android.auth.akuminalib.data.AppSettings;
-import com.akumina.android.auth.akuminalib.http.ResponseHandler;
 import com.akumina.android.auth.akuminalib.http.SaveTokenResponseHandler;
 import com.akumina.android.auth.akuminalib.impl.AuthenticationHandler;
 import com.akumina.android.auth.akuminalib.listener.AkuminaTokenCallback;
 import com.akumina.android.auth.akuminalib.listener.ApplicationListener;
+import com.akumina.android.auth.akuminalib.listener.LoggingHandler;
 import com.akumina.android.auth.akuminalib.listener.SharePointAuthCallback;
 import com.akumina.android.auth.akuminalib.utils.Constants;
 import com.akumina.android.auth.akuminalib.utils.HttpUtils;
@@ -81,6 +81,8 @@ public class MSALUtils {
     private String sharePointToken;
 
     private AuthFile configFile;
+
+    private LoggingHandler loggingHandler;
 
     private MSALUtils() {
         mamEnrollmentManager = MAMComponents.get(MAMEnrollmentManager.class);
@@ -185,7 +187,7 @@ public class MSALUtils {
         final String tenantId = account.getTenantId();
         final String authorityURL = account.getAuthority();
         String message = "Authentication succeeded for user " + upn + " token =" + result.getAccessToken();
-        LOGGER.info(message);
+        updateLog(message, false);
         this.graphToken = result.getAccessToken();
         Map<String, String> graphParams = new Hashtable<>();
         graphParams.put("resource", clientDetails.getScopes()[0].replace(".default", ""));
@@ -289,6 +291,7 @@ public class MSALUtils {
                 applicationListener.onCreated(this.mMsalClientApplication);
                 mSingleAccountApp = PublicClientApplication.createSingleAccountPublicClientApplication(appContext, configFile.getFileId());
                 LOGGER.log(Level.INFO, "mSingleAccountApp .. Init " + mSingleAccountApp);
+                updateLog("mSingleAccountApp .. Init " + mSingleAccountApp, false);
             } else {
                 PublicClientApplication.create(appContext, configFile.getFile(), new IPublicClientApplication.ApplicationCreatedListener() {
                     @Override
@@ -350,8 +353,10 @@ public class MSALUtils {
     public void addAuthenticationCallback(MAMServiceAuthenticationCallback callback) {
         if(this.mamEnrollmentManager!=null)
             this.mamEnrollmentManager.registerAuthenticationCallback(callback);
-        else
-            throw  new IllegalStateException("MAM Enrollment Manager  not initialized");
+        else {
+            updateLog("MAM Enrollment Manager  not initialized", true);
+            throw new IllegalStateException("MAM Enrollment Manager  not initialized");
+        }
     }
 
     private IAccount getAccount(String userId) throws InterruptedException, MsalException {
@@ -399,7 +404,9 @@ public class MSALUtils {
         final IAccount account = getAccount(clientDetails.getUserName());
 
         if (account == null) {
-            LOGGER.warning("Failed to sign out account: No account found for " + clientDetails.getUserName());
+            String error = "Failed to sign out account: No account found for " + clientDetails.getUserName();
+            updateLog(error, true);
+            LOGGER.warning(error);
             return;
         }
 
@@ -419,15 +426,25 @@ public class MSALUtils {
     public String getToken(TokenType tokenType) {
 
         if(tokenType.equals(TokenType.GRAPH)) {
-            ValidationUtils.isEmpty(graphToken, "Graph Token is empty");
+            ValidationUtils.isEmpty(graphToken, "Graph Token is empty", loggingHandler);
             return  graphToken;
         }else if (tokenType.equals(TokenType.AKUMINA)) {
             String token = AppSettings.getToken(appContext);
-            ValidationUtils.isEmpty(token, "Akumina Token is empty");
+            ValidationUtils.isEmpty(token, "Akumina Token is empty", loggingHandler);
             return  token;
         }else {
-            ValidationUtils.isEmpty(sharePointToken, "Sharepoint Token is empty");
+            ValidationUtils.isEmpty(sharePointToken, "Sharepoint Token is empty", loggingHandler);
             return  sharePointToken;
         }
+    }
+
+    private void updateLog(String message, boolean error) {
+        if(this.loggingHandler !=null) {
+            this.loggingHandler.handleMessage(message,error);
+        }
+    }
+
+    public void setLoggingHandler(LoggingHandler loggingHandler) {
+        this.loggingHandler = loggingHandler;
     }
 }
