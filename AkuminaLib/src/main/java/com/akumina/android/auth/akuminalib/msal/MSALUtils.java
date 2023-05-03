@@ -95,9 +95,9 @@ public class MSALUtils {
         return instance;
     }
 
-    public MAMEnrollmentManager createMAMEnrollmentManager() {
+    public MAMEnrollmentManager createMAMEnrollmentManager(Activity activity) {
         if (ValidationUtils.isNull(appContext)) {
-            throw new IllegalStateException("Context is null");
+            this.setAppContext(activity.getApplicationContext());
         }
         MAMEnrollmentManager manager =  MAMComponents.get(MAMEnrollmentManager.class);
 

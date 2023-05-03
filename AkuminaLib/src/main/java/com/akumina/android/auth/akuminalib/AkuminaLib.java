@@ -14,10 +14,7 @@ import com.akumina.android.auth.akuminalib.listener.SharePointAuthCallback;
 import com.akumina.android.auth.akuminalib.msal.AuthFile;
 import com.akumina.android.auth.akuminalib.msal.MSALUtils;
 import com.akumina.android.auth.akuminalib.utils.TokenType;
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -53,7 +50,7 @@ public final class AkuminaLib {
                                            ClientDetails clientDetails,
                                            AuthenticationHandler authenticationHandler,  ApplicationListener applicationListener) throws Exception {
         loadVolley(activity);
-        MSALUtils.getInstance().createMAMEnrollmentManager();
+        MSALUtils.getInstance().createMAMEnrollmentManager(activity);
         MSALUtils.getInstance().acquireToken(activity,authenticationHandler, true, authFile,clientDetails, applicationListener);
     }
     public  void signOut() throws Exception {
