@@ -9,7 +9,7 @@ it, simply add the following line to your build gradle:
   Akumina
 
 ## Add Dependency 
-  To Add AkuminaAuthAndroidLib as a dependency to your Android project add below maven repo to build.gradle file 
+  To Add AkuminaAuthAndroidLib as a dependency to your Android project add below maven repos to build.gradle file 
   
         maven {
             url 'https://pkgs.dev.azure.com/MicrosoftDeviceSDK/DuoSDK-Public/_packaging/Duo-SDK-Feed/maven/v1'
@@ -17,7 +17,10 @@ it, simply add the following line to your build gradle:
         
         maven { url 'https://jitpack.io' }
         
-        
+    #### Download com.microsoft.intune.mam.build.jar file http://github.com – [GitHub](https://github.com/akumina/auth-android-lib/blob/main/MAMSDK/com.microsoft.intune.mam.build.jar)  and add into dependencies 
+    
+    classpath files("app/MAMSDK/com.microsoft.intune.mam.build.jar")
+    
 ## License
 
 AkuminaAuthAndroidLib is available under the MIT license. See the LICENSE file for more info.
