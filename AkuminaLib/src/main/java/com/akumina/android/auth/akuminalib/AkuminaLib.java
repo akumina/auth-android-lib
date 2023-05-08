@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.akumina.android.auth.akuminalib.beans.ClientDetails;
+import com.akumina.android.auth.akuminalib.http.AkuminaRequest;
 import com.akumina.android.auth.akuminalib.impl.AuthenticationHandler;
 import com.akumina.android.auth.akuminalib.listener.AkuminaTokenCallback;
 import com.akumina.android.auth.akuminalib.listener.ApplicationListener;
@@ -18,6 +19,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.util.Map;
 import java.util.logging.Logger;
 
 public final class AkuminaLib {
@@ -76,9 +78,9 @@ public final class AkuminaLib {
         this.queue =  Volley.newRequestQueue(context.getApplicationContext());
     }
 
-    public void callAkuminaApi(int method, String url, org.json.JSONObject payload, String token, ResponseListener responseListener,
+    public void callAkuminaApi(int method, String url, Map<String,String> query, org.json.JSONObject payload, String token, ResponseListener responseListener,
                                ErrorListener errorListener) throws Exception {
-        JsonObjectRequest request = new JsonObjectRequest(method,url,payload,responseListener, errorListener);
+        AkuminaRequest request = new AkuminaRequest(method,query,url,payload,responseListener, errorListener);
 
         request.getHeaders().put("Authorization", "Bearer " + token);
 
