@@ -19,6 +19,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -80,12 +81,10 @@ public final class AkuminaLib {
 
     public void callAkuminaApi(int method, String url, Map<String,String> query, org.json.JSONObject payload, String token, ResponseListener responseListener,
                                ErrorListener errorListener) throws Exception {
-        AkuminaRequest request = new AkuminaRequest(method,query,url,payload,responseListener, errorListener);
-
-        request.getHeaders().put("Authorization", "Bearer " + token);
-
-        request.getHeaders().put("Content-Type","application/json");
-
+        Map<String,String > map =  new HashMap<>();
+        map.put("Authorization", "Bearer " + token);
+        map.put("Content-Type","application/json");
+        AkuminaRequest request = new AkuminaRequest(method,query,map,url,payload,responseListener, errorListener);
         this.queue.add(request);
     }
 }
