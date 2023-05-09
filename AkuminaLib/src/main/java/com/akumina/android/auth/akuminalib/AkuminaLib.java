@@ -80,10 +80,10 @@ public final class AkuminaLib {
         this.queue =  Volley.newRequestQueue(context.getApplicationContext());
     }
 
-    public <T> void callAkuminaApi(int method, String url, Map<String,String> query, Map<String,String> headers, org.json.JSONObject payload, String token, ResponseListener responseListener,
-                                   ErrorListener errorListener, Class<T> responseClass, Activity parentActivity) throws Exception {
-        AkuminaAPIClient<T> request = new AkuminaAPIClient(method,url,token,query,headers,payload,responseListener, errorListener);
-        request.execute(parentActivity,responseClass);
+    public void callAkuminaApi(int method, String url, Map<String,String> query, Map<String,String> headers, org.json.JSONObject payload, String token, ResponseListener responseListener,
+                                   ErrorListener errorListener, Activity parentActivity) throws Exception {
+        AkuminaAPIClient request = new AkuminaAPIClient(method,url,token,query,headers,payload,responseListener, errorListener);
+        request.execute(parentActivity);
         ;
     }
 }

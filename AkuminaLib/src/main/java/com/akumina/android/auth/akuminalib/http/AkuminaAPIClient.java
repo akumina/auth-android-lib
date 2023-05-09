@@ -16,19 +16,15 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.google.gson.GsonBuilder;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AkuminaAPIClient<T> {
+public class AkuminaAPIClient {
 
     private  int method;
     private String endPoint;
@@ -36,7 +32,7 @@ public class AkuminaAPIClient<T> {
     private JSONObject body;
 
     private String authToken;
-    private Response.Listener<T> listener;
+    private Response.Listener<AkuminaResponse> listener;
     private Response.ErrorListener errorListener;
 
     private Map<String,String> headers ;
@@ -49,7 +45,7 @@ public class AkuminaAPIClient<T> {
                             Map<String,String> query,
                             Map<String,String> headers,
                             JSONObject body,
-                            Response.Listener<T> listener,
+                            Response.Listener<AkuminaResponse> listener,
                             @Nullable Response.ErrorListener errorListener) {
         this.endPoint = endPoint;
         this.body = body;
@@ -62,7 +58,7 @@ public class AkuminaAPIClient<T> {
         // findTypeArguments(getClass());
     }
 
-    public void execute(Activity activity, Class<T> responseClass) {
+    public void execute(Activity activity) {
         RequestQueue queue = Volley.newRequestQueue(activity.getApplicationContext());
         Uri uri = Uri.parse(endPoint);
         Uri.Builder builder = uri.buildUpon();
@@ -73,21 +69,17 @@ public class AkuminaAPIClient<T> {
         String url = builder.toString();
         Log.i("Akumina Client", "Calling URL: " + url);
 
-        Request<T> request = new Request<T>(method,url, errorListener ) {
+        Request<AkuminaResponse> request = new Request<AkuminaResponse>(method,url, errorListener ) {
             @Override
-            protected Response<T> parseNetworkResponse(NetworkResponse response) {
+            protected Response<AkuminaResponse> parseNetworkResponse(NetworkResponse response) {
                 try {
                     String jsonString =
                             new String(
                                     response.data,
                                     HttpHeaderParser.parseCharset(response.headers, PROTOCOL_CHARSET));
-                    T t;
 
-                    if(responseClass.equals(String.class)) {
-                        t = (T) jsonString;
-                    }else {
-                        t = new Gson().fromJson(jsonString, responseClass);
-                    }
+                    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                    AkuminaResponse t = gson.fromJson(jsonString, AkuminaResponse.class);
                     return Response.success(
                             t, HttpHeaderParser.parseCacheHeaders(response));
                 } catch (Exception e) {
@@ -96,7 +88,7 @@ public class AkuminaAPIClient<T> {
             }
 
             @Override
-            protected void deliverResponse(T response) {
+            protected void deliverResponse(AkuminaResponse response) {
                 listener.onResponse(response);
             }
             @Override
