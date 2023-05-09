@@ -2,9 +2,11 @@ package com.akumina.android.auth.akuminalib;
 
 import android.app.Activity;
 import android.content.Context;
+import android.net.Uri;
+import android.util.Log;
 
 import com.akumina.android.auth.akuminalib.beans.ClientDetails;
-import com.akumina.android.auth.akuminalib.http.AkuminaRequest;
+import com.akumina.android.auth.akuminalib.http.AkuminaAPIClient;
 import com.akumina.android.auth.akuminalib.impl.AuthenticationHandler;
 import com.akumina.android.auth.akuminalib.listener.AkuminaTokenCallback;
 import com.akumina.android.auth.akuminalib.listener.ApplicationListener;
@@ -16,7 +18,6 @@ import com.akumina.android.auth.akuminalib.msal.AuthFile;
 import com.akumina.android.auth.akuminalib.msal.MSALUtils;
 import com.akumina.android.auth.akuminalib.utils.TokenType;
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import java.util.HashMap;
@@ -79,12 +80,10 @@ public final class AkuminaLib {
         this.queue =  Volley.newRequestQueue(context.getApplicationContext());
     }
 
-    public void callAkuminaApi(int method, String url, Map<String,String> query, org.json.JSONObject payload, String token, ResponseListener responseListener,
-                               ErrorListener errorListener) throws Exception {
-        Map<String,String > map =  new HashMap<>();
-        map.put("Authorization", "Bearer " + token);
-        map.put("Content-Type","application/json");
-        AkuminaRequest request = new AkuminaRequest(method,query,map,url,payload,responseListener, errorListener);
-        this.queue.add(request);
+    public <T> void callAkuminaApi(int method, String url, Map<String,String> query, Map<String,String> headers, org.json.JSONObject payload, String token, ResponseListener responseListener,
+                                   ErrorListener errorListener, T t, Class<T> responseClass, Activity parentActivity) throws Exception {
+        AkuminaAPIClient<T> request = new AkuminaAPIClient(method,url,token,query,headers,payload,responseListener, errorListener);
+        request.execute(parentActivity,responseClass);
+        ;
     }
 }
