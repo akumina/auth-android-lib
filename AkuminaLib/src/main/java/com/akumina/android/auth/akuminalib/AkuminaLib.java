@@ -81,7 +81,7 @@ public final class AkuminaLib {
     }
 
     public <T> void callAkuminaApi(int method, String url, Map<String,String> query, Map<String,String> headers, org.json.JSONObject payload, String token, ResponseListener responseListener,
-                                   ErrorListener errorListener, T t, Class<T> responseClass, Activity parentActivity) throws Exception {
+                                   ErrorListener errorListener, Class<T> responseClass, Activity parentActivity) throws Exception {
         AkuminaAPIClient<T> request = new AkuminaAPIClient(method,url,token,query,headers,payload,responseListener, errorListener);
         request.execute(parentActivity,responseClass);
         ;

@@ -58,7 +58,7 @@ public class AkuminaAPIClient<T> {
         this.method = method;
         this.query = query;
         this.authToken = authToken;
-
+        this.headers = headers;
         // findTypeArguments(getClass());
     }
 
