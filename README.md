@@ -47,7 +47,19 @@ it, simply add the following line to your build gradle:
         akuminaLib.authenticateWithMSAL(activity, authFile, clientDetails, new AuthCallback(), new AppListener());
    #### If sign-in using MSAL And MAM
         akuminaLib.authenticateWithMSALAndMAM(activity, authFile, clientDetails, new AuthCallback(), new AppListener());
- 
+   #### To Get Token 
+         String graphToken = akuminaLib.getToken(TokenType.GRAPH);
+         
+         TokenType is Enum. Values are 
+         
+          GRAPH - To get Graph Token 
+          SHAREPOINT - To get Sharepoint Token 
+          AKUMINA -  To get Akumina Token 
+          
+     #### To Call Akumina API 
+     
+         akuminaLib.callAkuminaApi(method,url,queryParams,headers, payload,responseListener,errorListener)
+         
 ## License
 
 AkuminaAuthAndroidLib is available under the MIT license. See the LICENSE file for more info.
