@@ -102,4 +102,16 @@ public final  class AppSettings {
         final SharedPreferences prefs = getPrefs(appContext);
         return prefs.getString("access_token", "");
     }
+
+    public static void saveTenantDetails(String data, final Context appContext){
+        final SharedPreferences sharedPref = getPrefs(appContext);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("tenantDetails", data);
+        editor.apply();
+    }
+
+    public static String getPublicAppData(final Context appContext) {
+        final SharedPreferences prefs = getPrefs(appContext);
+        return prefs.getString("tenantDetails", "");
+    }
 }

@@ -2,8 +2,6 @@ package com.akumina.android.auth.akuminalib;
 
 import android.app.Activity;
 import android.content.Context;
-import android.net.Uri;
-import android.util.Log;
 
 import com.akumina.android.auth.akuminalib.beans.ClientDetails;
 import com.akumina.android.auth.akuminalib.http.AkuminaAPIClient;
@@ -20,7 +18,6 @@ import com.akumina.android.auth.akuminalib.utils.TokenType;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -57,8 +54,8 @@ public final class AkuminaLib {
         MSALUtils.getInstance().createMAMEnrollmentManager(activity);
         MSALUtils.getInstance().acquireToken(activity,authenticationHandler, true, authFile,clientDetails, applicationListener);
     }
-    public  void signOut() throws Exception {
-        MSALUtils.getInstance().signOutAccount();
+    public  void signOut(Activity activity) throws Exception {
+        MSALUtils.getInstance().signOutAccount(activity);
     }
     public String getToken(TokenType tokenType){
         return MSALUtils.getInstance().getToken(tokenType);

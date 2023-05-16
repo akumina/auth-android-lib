@@ -278,7 +278,6 @@ public class MSALUtils {
         }
         this.applicationListener = applicationListener;
 
-        this.clientDetails = clientDetails;
         if (mMsalClientApplication == null) {
             com.microsoft.identity.client.Logger msalLogger
                     = com.microsoft.identity.client.Logger.getInstance();
@@ -391,15 +390,28 @@ public class MSALUtils {
         this.akuminaTokenCallback = akuminaTokenCallback;
     }
 
-    public  void signOutAccount() throws Exception {
+    public  void signOutAccount(Activity activity) throws Exception {
 
-        if(ValidationUtils.isNull(clientDetails)) {
-            throw new IllegalAccessError("Client Details is null");
+        if(appContext ==  null) {
+            setAppContext(activity.getApplicationContext());
         }
-        if(ValidationUtils.isNull(applicationListener)) {
-            throw new IllegalAccessError("Application is null");
-        }
-        initializeMsalClientApplication(applicationListener);
+//       if(ValidationUtils.isNull(clientDetails)) {
+//           throw new IllegalAccessError("Client Details is null");
+//        }
+//        if(ValidationUtils.isNull(applicationListener)) {
+//            throw new Exception("Application is null");
+//        }
+        initializeMsalClientApplication(new ApplicationListener() {
+            @Override
+            public void onCreated(IPublicClientApplication application) {
+                mMsalClientApplication = application;
+            }
+
+            @Override
+            public void onError(MsalException exception) {
+                throw new RuntimeException(exception);
+            }
+        });
 
         final IAccount account = getAccount(clientDetails.getUserName());
 
