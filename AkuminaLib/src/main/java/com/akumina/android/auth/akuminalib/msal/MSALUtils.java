@@ -270,8 +270,7 @@ public class MSALUtils {
                 });
     }
 
-    private synchronized void initializeMsalClientApplication(
-                                                              ApplicationListener applicationListener)
+    private void initializeMsalClientApplication(ApplicationListener applicationListener)
             throws MsalException, InterruptedException {
         if (ValidationUtils.isNull(appContext)) {
             throw new IllegalStateException("Context is null");
@@ -292,7 +291,7 @@ public class MSALUtils {
                 LOGGER.log(Level.INFO, "mSingleAccountApp .. Init " + mSingleAccountApp);
                 updateLog("mSingleAccountApp .. Init " + mSingleAccountApp, false);
             } else {
-                PublicClientApplication.create(appContext, configFile.getFile(), new IPublicClientApplication.ApplicationCreatedListener() {
+                 PublicClientApplication.create(appContext, configFile.getFile(), new IPublicClientApplication.ApplicationCreatedListener() {
                     @Override
                     public void onCreated(IPublicClientApplication application) {
                         mMsalClientApplication = application;
