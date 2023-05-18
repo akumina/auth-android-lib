@@ -295,26 +295,26 @@ public class MSALUtils {
                     @Override
                     public void onCreated(IPublicClientApplication application) {
                         mMsalClientApplication = application;
-                        try {
-                            mSingleAccountApp = PublicClientApplication.createSingleAccountPublicClientApplication(appContext, configFile.getFile());
-                            applicationListener.onCreated(application);
-                        }catch ( InterruptedException e) {
-                            LOGGER.log(Level.SEVERE,"createSingleAccountPublicClientApplication InterruptedException", e);
-                            onError(new MsalClientException(e.getLocalizedMessage()));
-                        }catch (MsalException e) {
-                            LOGGER.log(Level.SEVERE,"createSingleAccountPublicClientApplication ", e);
-                            onError(e);
-                        }
-
+                        applicationListener.onCreated(application);
                     }
 
                     @Override
                     public void onError(MsalException exception) {
                         Log.e("PublicClientApplication", "onError: ", exception);
                         applicationListener.onError(exception);
-
                     }
                 });
+
+                try {
+                    mSingleAccountApp = PublicClientApplication.createSingleAccountPublicClientApplication(appContext, configFile.getFile());
+
+                }catch ( InterruptedException e) {
+                    LOGGER.log(Level.SEVERE,"createSingleAccountPublicClientApplication InterruptedException", e);
+                    onError(new MsalClientException(e.getLocalizedMessage()));
+                }catch (MsalException e) {
+                    LOGGER.log(Level.SEVERE,"createSingleAccountPublicClientApplication ", e);
+                    onError(e);
+                }
             }
         }
     }
