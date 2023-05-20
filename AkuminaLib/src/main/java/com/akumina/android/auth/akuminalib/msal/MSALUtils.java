@@ -280,6 +280,7 @@ public class MSALUtils {
                     }
                 });
     }
+
     private synchronized void initializeMsalClientApplication(ApplicationListener applicationListener, AuthenticationHandler handler, Activity activity)
             throws MsalException, InterruptedException {
         if (ValidationUtils.isNull(appContext)) {
@@ -295,56 +296,50 @@ public class MSALUtils {
             msalLogger.setEnablePII(true);
 
             if (!configFile.isFileBased()) {
-                Thread thread = new Thread(() -> {
+                try {
+                    this.mMsalClientApplication = PublicClientApplication.create(appContext, configFile.getFileId());
+                    applicationListener.onCreated(this.mMsalClientApplication);
+                    mSingleAccountApp = PublicClientApplication.createSingleAccountPublicClientApplication(appContext, configFile.getFileId());
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                } catch (MsalException e) {
+                    throw new RuntimeException(e);
+                }
+                LOGGER.log(Level.INFO, "mSingleAccountApp .. Init " + mSingleAccountApp);
+                updateLog("mSingleAccountApp .. Init " + mSingleAccountApp, false);
+                if (handler != null) {
+                    initForToken(handler, activity);
+                }
 
-                    try {
-                        this.mMsalClientApplication = PublicClientApplication.create(appContext, configFile.getFileId());
-                        applicationListener.onCreated(this.mMsalClientApplication);
-                        mSingleAccountApp = PublicClientApplication.createSingleAccountPublicClientApplication(appContext, configFile.getFileId());
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    } catch (MsalException e) {
-                        throw new RuntimeException(e);
-                    }
-                    LOGGER.log(Level.INFO, "mSingleAccountApp .. Init " + mSingleAccountApp);
-                    updateLog("mSingleAccountApp .. Init " + mSingleAccountApp, false);
-                    if (handler != null) {
-                        initForToken(handler, activity);
-                    }
-                });
-                thread.start();
             } else {
-
-                Thread thread = new Thread(() -> {
-                    PublicClientApplication.create(appContext, configFile.getFile(), new IPublicClientApplication.ApplicationCreatedListener() {
-                        @Override
-                        public void onCreated(IPublicClientApplication application) {
-                            mMsalClientApplication = application;
-                            applicationListener.onCreated(application);
-                            try {
-                                mSingleAccountApp = PublicClientApplication.createSingleAccountPublicClientApplication(appContext, configFile.getFile());
-                                if (handler != null) {
-                                    initForToken(handler, activity);
-                                }
-                            } catch (InterruptedException e) {
-                                LOGGER.log(Level.SEVERE, "createSingleAccountPublicClientApplication InterruptedException", e);
-                                onError(new MsalClientException(e.getLocalizedMessage()));
-                                return;
-                            } catch (MsalException e) {
-                                LOGGER.log(Level.SEVERE, "createSingleAccountPublicClientApplication ", e);
-                                onError(e);
-                                return;
+                PublicClientApplication.create(appContext, configFile.getFile(), new IPublicClientApplication.ApplicationCreatedListener() {
+                    @Override
+                    public void onCreated(IPublicClientApplication application) {
+                        mMsalClientApplication = application;
+                        applicationListener.onCreated(application);
+                        try {
+                            mSingleAccountApp = PublicClientApplication.createSingleAccountPublicClientApplication(appContext, configFile.getFile());
+                            if (handler != null) {
+                                initForToken(handler, activity);
                             }
+                        } catch (InterruptedException e) {
+                            LOGGER.log(Level.SEVERE, "createSingleAccountPublicClientApplication InterruptedException", e);
+                            onError(new MsalClientException(e.getLocalizedMessage()));
+                            return;
+                        } catch (MsalException e) {
+                            LOGGER.log(Level.SEVERE, "createSingleAccountPublicClientApplication ", e);
+                            onError(e);
+                            return;
                         }
+                    }
 
-                        @Override
-                        public void onError(MsalException exception) {
-                            Log.e("PublicClientApplication", "onError: ", exception);
-                            applicationListener.onError(exception);
-                        }
-                    });
+                    @Override
+                    public void onError(MsalException exception) {
+                        Log.e("PublicClientApplication", "onError: ", exception);
+                        applicationListener.onError(exception);
+                    }
                 });
-                thread.start();
+
             }
         }
     }

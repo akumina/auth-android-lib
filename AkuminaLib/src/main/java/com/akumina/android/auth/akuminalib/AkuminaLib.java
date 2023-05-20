@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.Build;
 import android.provider.Settings;
 
+import androidx.annotation.WorkerThread;
+
 import com.akumina.android.auth.akuminalib.beans.ClientDetails;
 import com.akumina.android.auth.akuminalib.data.AppAccount;
 import com.akumina.android.auth.akuminalib.data.AppSettings;
