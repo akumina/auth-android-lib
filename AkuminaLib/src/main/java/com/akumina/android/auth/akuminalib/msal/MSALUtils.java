@@ -139,17 +139,7 @@ public class MSALUtils {
         mMsalClientApplication.acquireTokenSilentAsync(params);
     }
 
-    @WorkerThread
-    public void acquireToken(Activity activity, @NonNull final AuthenticationHandler handler, boolean mamEnrollment,
-                             AuthFile configFile, ClientDetails clientDetails, ApplicationListener applicationListener)
-            throws MsalException, InterruptedException {
-        this.mamEnrollment = mamEnrollment;
-        this.configFile = configFile;
-        this.clientDetails = clientDetails;
-        setAppContext(activity.getApplicationContext());
-
-        initializeMsalClientApplication(applicationListener);
-
+    private void initForToken( final AuthenticationHandler handler, Activity activity) {
         AppAccount appAccount = AppSettings.getAccount(appContext);
 
         if (appAccount == null) {
@@ -177,8 +167,27 @@ public class MSALUtils {
                     .build();
             mMsalClientApplication.acquireToken(params);
         } else {
-            acquireTokenSilent(appAccount.getAADID(), handler);
+            try {
+                acquireTokenSilent(appAccount.getAADID(), handler);
+            } catch (MsalException e) {
+                throw new RuntimeException(e);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
+    }
+    @WorkerThread
+    public void acquireToken(Activity activity, @NonNull final AuthenticationHandler handler, boolean mamEnrollment,
+                             AuthFile configFile, ClientDetails clientDetails, ApplicationListener applicationListener)
+            throws MsalException, InterruptedException {
+        this.mamEnrollment = mamEnrollment;
+        this.configFile = configFile;
+        this.clientDetails = clientDetails;
+        setAppContext(activity.getApplicationContext());
+
+        initializeMsalClientApplication(applicationListener,handler ,activity);
+
+
     }
 
     private void handleAuthSuccess(IAuthenticationResult result) {
@@ -271,7 +280,7 @@ public class MSALUtils {
                 });
     }
 
-    private void initializeMsalClientApplication(ApplicationListener applicationListener)
+    private synchronized void initializeMsalClientApplication(ApplicationListener applicationListener, AuthenticationHandler handler, Activity activity)
             throws MsalException, InterruptedException {
         if (ValidationUtils.isNull(appContext)) {
             throw new IllegalStateException("Context is null");
@@ -291,6 +300,9 @@ public class MSALUtils {
                 mSingleAccountApp = PublicClientApplication.createSingleAccountPublicClientApplication(appContext, configFile.getFileId());
                 LOGGER.log(Level.INFO, "mSingleAccountApp .. Init " + mSingleAccountApp);
                 updateLog("mSingleAccountApp .. Init " + mSingleAccountApp, false);
+                if(handler != null) {
+                    initForToken(handler, activity);
+                }
             } else {
 
                 Thread t = new Thread(() -> {
@@ -302,6 +314,9 @@ public class MSALUtils {
                             applicationListener.onCreated(application);
                             try {
                                 mSingleAccountApp = PublicClientApplication.createSingleAccountPublicClientApplication(appContext, configFile.getFile());
+                                if(handler != null) {
+                                    initForToken(handler, activity);
+                                }
                             } catch (InterruptedException e) {
                                 LOGGER.log(Level.SEVERE, "createSingleAccountPublicClientApplication InterruptedException", e);
                                 onError(new MsalClientException(e.getLocalizedMessage()));
@@ -407,17 +422,18 @@ public class MSALUtils {
 //        if(ValidationUtils.isNull(applicationListener)) {
 //            throw new Exception("Application is null");
 //        }
+
         initializeMsalClientApplication(new ApplicationListener() {
             @Override
             public void onCreated(IPublicClientApplication application) {
-                mMsalClientApplication = application;
+
             }
 
             @Override
             public void onError(MsalException exception) {
-                throw new RuntimeException(exception);
+
             }
-        });
+        }, null, activity);
 
         final IAccount account = getAccount(clientDetails.getUserName());
 
