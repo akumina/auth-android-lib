@@ -99,14 +99,14 @@ public class MSALUtils {
         if (ValidationUtils.isNull(appContext)) {
             this.setAppContext(activity.getApplicationContext());
         }
-        MAMEnrollmentManager manager =  MAMComponents.get(MAMEnrollmentManager.class);
+        MAMEnrollmentManager manager = MAMComponents.get(MAMEnrollmentManager.class);
 
         mamEnrollmentManager = manager;
 
         return mamEnrollmentManager;
     }
 
-    private  void acquireTokenSilent(String aadId, @NonNull final AuthenticationHandler handler)
+    private void acquireTokenSilent(String aadId, @NonNull final AuthenticationHandler handler)
             throws MsalException, InterruptedException {
 
         final IAccount account = getAccount(aadId);
@@ -138,20 +138,21 @@ public class MSALUtils {
 
         mMsalClientApplication.acquireTokenSilentAsync(params);
     }
+
     @WorkerThread
     public void acquireToken(Activity activity, @NonNull final AuthenticationHandler handler, boolean mamEnrollment,
-                             AuthFile configFile, ClientDetails clientDetails,  ApplicationListener applicationListener)
+                             AuthFile configFile, ClientDetails clientDetails, ApplicationListener applicationListener)
             throws MsalException, InterruptedException {
         this.mamEnrollment = mamEnrollment;
         this.configFile = configFile;
-        this.clientDetails =  clientDetails;
+        this.clientDetails = clientDetails;
         setAppContext(activity.getApplicationContext());
 
         initializeMsalClientApplication(applicationListener);
 
         AppAccount appAccount = AppSettings.getAccount(appContext);
 
-        if(appAccount == null) {
+        if (appAccount == null) {
             AcquireTokenParameters params = new AcquireTokenParameters.Builder()
                     .withScopes(Arrays.asList(clientDetails.getScopes()))
                     .withCallback(new AuthenticationCallback() {
@@ -175,8 +176,8 @@ public class MSALUtils {
                     .withLoginHint(clientDetails.getUserName())
                     .build();
             mMsalClientApplication.acquireToken(params);
-        }else {
-            acquireTokenSilent(appAccount.getAADID(),handler);
+        } else {
+            acquireTokenSilent(appAccount.getAADID(), handler);
         }
     }
 
@@ -292,33 +293,35 @@ public class MSALUtils {
                 updateLog("mSingleAccountApp .. Init " + mSingleAccountApp, false);
             } else {
 
-                    Thread t = new Thread(() -> {
-                        try {
-                        mSingleAccountApp = PublicClientApplication.createSingleAccountPublicClientApplication(appContext, configFile.getFile());
-                            PublicClientApplication.create(appContext, configFile.getFile(), new IPublicClientApplication.ApplicationCreatedListener() {
-                                @Override
-                                public void onCreated(IPublicClientApplication application) {
-                                    mMsalClientApplication = application;
-                                    applicationListener.onCreated(application);
-                                }
+                Thread t = new Thread(() -> {
 
-                                @Override
-                                public void onError(MsalException exception) {
-                                    Log.e("PublicClientApplication", "onError: ", exception);
-                                    applicationListener.onError(exception);
-                                }
-                            });
-                        }catch ( InterruptedException e) {
-                            LOGGER.log(Level.SEVERE,"createSingleAccountPublicClientApplication InterruptedException", e);
-                            onError(new MsalClientException(e.getLocalizedMessage()));
-                            return;
-                        }catch (MsalException e) {
-                            LOGGER.log(Level.SEVERE,"createSingleAccountPublicClientApplication ", e);
-                            onError(e);
-                            return;
+                    PublicClientApplication.create(appContext, configFile.getFile(), new IPublicClientApplication.ApplicationCreatedListener() {
+                        @Override
+                        public void onCreated(IPublicClientApplication application) {
+                            mMsalClientApplication = application;
+                            applicationListener.onCreated(application);
+                            try {
+                                mSingleAccountApp = PublicClientApplication.createSingleAccountPublicClientApplication(appContext, configFile.getFile());
+                            } catch (InterruptedException e) {
+                                LOGGER.log(Level.SEVERE, "createSingleAccountPublicClientApplication InterruptedException", e);
+                                onError(new MsalClientException(e.getLocalizedMessage()));
+                                return;
+                            } catch (MsalException e) {
+                                LOGGER.log(Level.SEVERE, "createSingleAccountPublicClientApplication ", e);
+                                onError(e);
+                                return;
+                            }
+                        }
+
+                        @Override
+                        public void onError(MsalException exception) {
+                            Log.e("PublicClientApplication", "onError: ", exception);
+                            applicationListener.onError(exception);
                         }
                     });
-                    t.start();
+
+                });
+                t.start();
             }
         }
     }
@@ -353,7 +356,7 @@ public class MSALUtils {
     }
 
     public void addAuthenticationCallback(MAMServiceAuthenticationCallback callback) {
-        if(this.mamEnrollmentManager!=null)
+        if (this.mamEnrollmentManager != null)
             this.mamEnrollmentManager.registerAuthenticationCallback(callback);
         else {
             updateLog("MAM Enrollment Manager  not initialized", true);
@@ -393,9 +396,9 @@ public class MSALUtils {
         this.akuminaTokenCallback = akuminaTokenCallback;
     }
 
-    public  void signOutAccount(Activity activity) throws Exception {
+    public void signOutAccount(Activity activity) throws Exception {
 
-        if(appContext ==  null) {
+        if (appContext == null) {
             setAppContext(activity.getApplicationContext());
         }
 //       if(ValidationUtils.isNull(clientDetails)) {
@@ -440,22 +443,22 @@ public class MSALUtils {
 
     public String getToken(TokenType tokenType) {
 
-        if(tokenType.equals(TokenType.GRAPH)) {
+        if (tokenType.equals(TokenType.GRAPH)) {
             ValidationUtils.isEmpty(graphToken, "Graph Token is empty", loggingHandler);
-            return  graphToken;
-        }else if (tokenType.equals(TokenType.AKUMINA)) {
+            return graphToken;
+        } else if (tokenType.equals(TokenType.AKUMINA)) {
             String token = AppSettings.getToken(appContext);
             ValidationUtils.isEmpty(token, "Akumina Token is empty", loggingHandler);
-            return  token;
-        }else {
+            return token;
+        } else {
             ValidationUtils.isEmpty(sharePointToken, "Sharepoint Token is empty", loggingHandler);
-            return  sharePointToken;
+            return sharePointToken;
         }
     }
 
     private void updateLog(String message, boolean error) {
-        if(this.loggingHandler !=null) {
-            this.loggingHandler.handleMessage(message,error);
+        if (this.loggingHandler != null) {
+            this.loggingHandler.handleMessage(message, error);
         }
     }
 
