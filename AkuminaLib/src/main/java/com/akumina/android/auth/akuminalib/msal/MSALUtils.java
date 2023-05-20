@@ -139,7 +139,7 @@ public class MSALUtils {
         mMsalClientApplication.acquireTokenSilentAsync(params);
     }
 
-    private void initForToken( final AuthenticationHandler handler, Activity activity) {
+    private void initForToken(final AuthenticationHandler handler, Activity activity) {
         AppAccount appAccount = AppSettings.getAccount(appContext);
 
         if (appAccount == null) {
@@ -176,6 +176,7 @@ public class MSALUtils {
             }
         }
     }
+
     @WorkerThread
     public void acquireToken(Activity activity, @NonNull final AuthenticationHandler handler, boolean mamEnrollment,
                              AuthFile configFile, ClientDetails clientDetails, ApplicationListener applicationListener)
@@ -185,7 +186,7 @@ public class MSALUtils {
         this.clientDetails = clientDetails;
         setAppContext(activity.getApplicationContext());
 
-        initializeMsalClientApplication(applicationListener,handler ,activity);
+        initializeMsalClientApplication(applicationListener, handler, activity);
 
 
     }
@@ -279,7 +280,6 @@ public class MSALUtils {
                     }
                 });
     }
-
     private synchronized void initializeMsalClientApplication(ApplicationListener applicationListener, AuthenticationHandler handler, Activity activity)
             throws MsalException, InterruptedException {
         if (ValidationUtils.isNull(appContext)) {
@@ -295,18 +295,27 @@ public class MSALUtils {
             msalLogger.setEnablePII(true);
 
             if (!configFile.isFileBased()) {
-                this.mMsalClientApplication = PublicClientApplication.create(appContext, configFile.getFileId());
-                applicationListener.onCreated(this.mMsalClientApplication);
-                mSingleAccountApp = PublicClientApplication.createSingleAccountPublicClientApplication(appContext, configFile.getFileId());
-                LOGGER.log(Level.INFO, "mSingleAccountApp .. Init " + mSingleAccountApp);
-                updateLog("mSingleAccountApp .. Init " + mSingleAccountApp, false);
-                if(handler != null) {
-                    initForToken(handler, activity);
-                }
+                Thread thread = new Thread(() -> {
+
+                    try {
+                        this.mMsalClientApplication = PublicClientApplication.create(appContext, configFile.getFileId());
+                        applicationListener.onCreated(this.mMsalClientApplication);
+                        mSingleAccountApp = PublicClientApplication.createSingleAccountPublicClientApplication(appContext, configFile.getFileId());
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    } catch (MsalException e) {
+                        throw new RuntimeException(e);
+                    }
+                    LOGGER.log(Level.INFO, "mSingleAccountApp .. Init " + mSingleAccountApp);
+                    updateLog("mSingleAccountApp .. Init " + mSingleAccountApp, false);
+                    if (handler != null) {
+                        initForToken(handler, activity);
+                    }
+                });
+                thread.start();
             } else {
 
-                Thread t = new Thread(() -> {
-
+                Thread thread = new Thread(() -> {
                     PublicClientApplication.create(appContext, configFile.getFile(), new IPublicClientApplication.ApplicationCreatedListener() {
                         @Override
                         public void onCreated(IPublicClientApplication application) {
@@ -314,7 +323,7 @@ public class MSALUtils {
                             applicationListener.onCreated(application);
                             try {
                                 mSingleAccountApp = PublicClientApplication.createSingleAccountPublicClientApplication(appContext, configFile.getFile());
-                                if(handler != null) {
+                                if (handler != null) {
                                     initForToken(handler, activity);
                                 }
                             } catch (InterruptedException e) {
@@ -334,9 +343,8 @@ public class MSALUtils {
                             applicationListener.onError(exception);
                         }
                     });
-
                 });
-                t.start();
+                thread.start();
             }
         }
     }
