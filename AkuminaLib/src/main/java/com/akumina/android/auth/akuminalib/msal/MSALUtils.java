@@ -150,13 +150,11 @@ public class MSALUtils {
                         public void onCancel() {
                             handler.onCancel();
                         }
-
                         @Override
                         public void onSuccess(IAuthenticationResult authenticationResult) {
                             handleAuthSuccess(authenticationResult);
                             handler.onSuccess(authenticationResult);
                         }
-
                         @Override
                         public void onError(MsalException exception) {
                             handler.onError(exception);
@@ -167,13 +165,16 @@ public class MSALUtils {
                     .build();
             mMsalClientApplication.acquireToken(params);
         } else {
-            try {
-                acquireTokenSilent(appAccount.getAADID(), handler);
-            } catch (MsalException e) {
-                throw new RuntimeException(e);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            Thread thread = new Thread(() -> {
+                try {
+                    acquireTokenSilent(appAccount.getAADID(), handler);
+                } catch (MsalException e) {
+                    handler.onError(e);
+                } catch (InterruptedException e) {
+                    handler.onError(new MsalClientException("50002", "InterruptedException", e));
+                }
+            });
+           thread.start();
         }
     }
 
