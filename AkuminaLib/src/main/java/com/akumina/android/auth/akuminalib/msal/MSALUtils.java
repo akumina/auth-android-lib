@@ -142,6 +142,15 @@ public class MSALUtils {
     private void initForToken(final AuthenticationHandler handler, Activity activity) {
         AppAccount appAccount = AppSettings.getAccount(appContext);
 
+        if(appAccount !=null) {
+            if(!appAccount.getUPN().equals(clientDetails.getUserName())) {
+                // Consider as different user logged in
+                loggingHandler.handleMessage("Different user " + appAccount.getUPN() + " -> " + clientDetails.getUserName(), false);
+                appAccount = null;
+            }else {
+                loggingHandler.handleMessage("Welcome back " + appAccount.getUPN() + " = " + clientDetails.getUserName(), false);
+            }
+        }
         if (appAccount == null) {
             AcquireTokenParameters params = new AcquireTokenParameters.Builder()
                     .withScopes(Arrays.asList(clientDetails.getScopes()))
@@ -167,7 +176,7 @@ public class MSALUtils {
         } else {
             Thread thread = new Thread(() -> {
                 try {
-                    acquireTokenSilent(appAccount.getAADID(), handler);
+                    acquireTokenSilent( AppSettings.getAccount(appContext).getAADID(), handler);
                 } catch (MsalException e) {
                     handler.onError(e);
                 } catch (InterruptedException e) {
