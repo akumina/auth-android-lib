@@ -71,7 +71,7 @@ public class AppAccount {
         editor.putString(AADID_KEY, mAADID);
         editor.putString(TENANTID_KEY, mTenantID);
         editor.putString(AUTHORITY_KEY, mAuthority);
-        editor.apply();
+        editor.commit();
     }
 
     /**
@@ -113,6 +113,6 @@ public class AppAccount {
         editor.remove(AADID_KEY);
         editor.remove(TENANTID_KEY);
         editor.remove(AUTHORITY_KEY);
-        editor.apply();
+        editor.commit();
     }
 }

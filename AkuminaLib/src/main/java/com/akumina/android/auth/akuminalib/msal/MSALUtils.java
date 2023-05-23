@@ -326,7 +326,6 @@ public class MSALUtils {
                 this.mMsalClientApplication = PublicClientApplication.create(appContext, configFile.getFileId());
                 applicationListener.onCreated(this.mMsalClientApplication);
                 mSingleAccountApp = PublicClientApplication.createSingleAccountPublicClientApplication(appContext, configFile.getFileId());
-
                 LOGGER.log(Level.INFO, "mSingleAccountApp .. Init " + mSingleAccountApp);
                 updateLog("mSingleAccountApp .. Init " + mSingleAccountApp, false);
                 if (handler != null) {
