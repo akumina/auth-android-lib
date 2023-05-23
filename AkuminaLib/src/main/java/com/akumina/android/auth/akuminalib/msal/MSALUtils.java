@@ -146,10 +146,10 @@ public class MSALUtils {
         if (appAccount != null) {
             if (!StringUtil.isEmpty(appAccount.getUPN())) {
                 if (!appAccount.getUPN().equals(clientDetails.getUserName())) {
-                    appAccount = null;
                     // Consider as different user logged in
                     loggingHandler.handleMessage("Different user " + appAccount.getUPN() + " -> " + clientDetails.getUserName(), false);
                     AppAccount finalAppAccount = appAccount;
+                    appAccount = null;
                     Thread thread = new Thread(() -> {
                         try {
                             signOutAccount(activity, finalAppAccount.getUPN());
