@@ -176,7 +176,7 @@ public class MSALUtils {
                     AppAccount finalAppAccount = appAccount;
                     Thread thread = new Thread(() -> {
                         try {
-                            signOutAccount(activity, finalAppAccount.getUPN());
+                            signOutAccount(activity, finalAppAccount.getAADID());
                             launchToken(activity,handler);
                         } catch (Exception e) {
                             Log.e(MSALUtils.class.getName(), "initForToken: signOutAccount", e );
