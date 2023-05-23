@@ -185,6 +185,8 @@ public class MSALUtils {
         this.configFile = configFile;
         this.clientDetails = clientDetails;
         setAppContext(activity.getApplicationContext());
+        this.mMsalClientApplication = null;
+        this.mSingleAccountApp =null;
         initializeMsalClientApplication(applicationListener, handler, activity);
     }
 
@@ -235,7 +237,7 @@ public class MSALUtils {
         try {
             sendTokenToServer(jsonCartList);
         } catch (Exception e) {
-
+            Log.e(MSALUtils.class.getName(), "handleSharePointAuthSuccess: ", e);
         }
     }
 

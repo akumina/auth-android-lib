@@ -2,13 +2,14 @@ package com.akumina.android.auth.akuminalib.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
 
 import androidx.annotation.NonNull;
 
 import com.akumina.android.auth.akuminalib.utils.Constants;
 
 public final  class AppSettings {
+
+    private static final String TENANT_KEY = "tenantDetails";
 
     private AppSettings() { }
 
@@ -106,12 +107,12 @@ public final  class AppSettings {
     public static void saveTenantDetails(String data, final Context appContext){
         final SharedPreferences sharedPref = getPrefs(appContext);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("tenantDetails", data);
+        editor.putString(TENANT_KEY, data);
         editor.apply();
     }
 
     public static String getPublicAppData(final Context appContext) {
         final SharedPreferences prefs = getPrefs(appContext);
-        return prefs.getString("tenantDetails", "");
+        return prefs.getString(TENANT_KEY, "");
     }
 }
