@@ -165,6 +165,7 @@ public class MSALUtils {
                 .build();
         mMsalClientApplication.acquireToken(params);
     }
+
     private void initForToken(final AuthenticationHandler handler, Activity activity) {
         AppAccount appAccount = AppSettings.getAccount(appContext);
 
@@ -449,20 +450,23 @@ public class MSALUtils {
             }
         }, null, activity);
 
-        final IAccount account = getAccount(userName);
-
-        if (account == null) {
-            String error = "Failed to sign out account: No account found for " + clientDetails.getUserName();
-            updateLog(error, true);
-            LOGGER.warning(error);
-            return;
-        }
+//        final IAccount account = getAccount(userName);
+//
+//        if (account == null) {
+//            String error = "Failed to sign out account: No account found for " + clientDetails.getUserName();
+//            updateLog(error, true);
+//            LOGGER.warning(error);
+//            return;
+//        }
 
         if (mMsalClientApplication instanceof IMultipleAccountPublicClientApplication) {
             IMultipleAccountPublicClientApplication multiAccountPCA =
                     (IMultipleAccountPublicClientApplication) mMsalClientApplication;
-
-            multiAccountPCA.removeAccount(account);
+            List<IAccount> accounts = multiAccountPCA.getAccounts();
+           for(IAccount account: accounts) {
+               multiAccountPCA.removeAccount(account);
+           }
+//            multiAccountPCA.removeAccount(account);
         } else {
             ISingleAccountPublicClientApplication singleAccountPCA =
                     (ISingleAccountPublicClientApplication) mMsalClientApplication;
