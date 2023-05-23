@@ -146,14 +146,18 @@ public class MSALUtils {
         if (appAccount != null) {
             if (!StringUtil.isEmpty(appAccount.getUPN())) {
                 if (!appAccount.getUPN().equals(clientDetails.getUserName())) {
+                    appAccount = null;
                     // Consider as different user logged in
                     loggingHandler.handleMessage("Different user " + appAccount.getUPN() + " -> " + clientDetails.getUserName(), false);
-                    try {
-                        signOutAccount(activity, appAccount.getUPN());
-                    } catch (Exception e) {
-                        Log.e(MSALUtils.class.getName(), "initForToken: signOutAccount", e );
-                    }
-                    appAccount = null;
+                    AppAccount finalAppAccount = appAccount;
+                    Thread thread = new Thread(() -> {
+                        try {
+                            signOutAccount(activity, finalAppAccount.getUPN());
+                        } catch (Exception e) {
+                            Log.e(MSALUtils.class.getName(), "initForToken: signOutAccount", e );
+                        }
+                    });
+                    thread.start();
                 }else {
                     loggingHandler.handleMessage("Welcome back " + appAccount.getUPN() + " = " + clientDetails.getUserName(), false);
                 }
