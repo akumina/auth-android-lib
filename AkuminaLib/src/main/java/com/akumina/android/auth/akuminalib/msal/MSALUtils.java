@@ -140,6 +140,31 @@ public class MSALUtils {
         mMsalClientApplication.acquireTokenSilentAsync(params);
     }
 
+    private void launchToken(Activity activity, final AuthenticationHandler handler) {
+        AcquireTokenParameters params = new AcquireTokenParameters.Builder()
+                .withScopes(Arrays.asList(clientDetails.getScopes()))
+                .withCallback(new AuthenticationCallback() {
+                    @Override
+                    public void onCancel() {
+                        handler.onCancel();
+                    }
+
+                    @Override
+                    public void onSuccess(IAuthenticationResult authenticationResult) {
+                        handleAuthSuccess(authenticationResult);
+                        handler.onSuccess(authenticationResult);
+                    }
+
+                    @Override
+                    public void onError(MsalException exception) {
+                        handler.onError(exception);
+                    }
+                })
+                .startAuthorizationFromActivity(activity)
+                .withLoginHint(clientDetails.getUserName())
+                .build();
+        mMsalClientApplication.acquireToken(params);
+    }
     private void initForToken(final AuthenticationHandler handler, Activity activity) {
         AppAccount appAccount = AppSettings.getAccount(appContext);
 
@@ -149,56 +174,34 @@ public class MSALUtils {
                     // Consider as different user logged in
                     loggingHandler.handleMessage("Different user " + appAccount.getUPN() + " -> " + clientDetails.getUserName(), false);
                     AppAccount finalAppAccount = appAccount;
-                    appAccount = null;
                     Thread thread = new Thread(() -> {
                         try {
                             signOutAccount(activity, finalAppAccount.getUPN());
+                            launchToken(activity,handler);
                         } catch (Exception e) {
                             Log.e(MSALUtils.class.getName(), "initForToken: signOutAccount", e );
+                            launchToken(activity,handler);
                         }
                     });
                     thread.start();
                 }else {
                     loggingHandler.handleMessage("Welcome back " + appAccount.getUPN() + " = " + clientDetails.getUserName(), false);
+                    Thread thread = new Thread(() -> {
+                        try {
+                            acquireTokenSilent(AppSettings.getAccount(appContext).getAADID(), handler);
+                        } catch (MsalException e) {
+                            handler.onError(e);
+                        } catch (InterruptedException e) {
+                            handler.onError(new MsalClientException("50002", "InterruptedException", e));
+                        }
+                    });
+                    thread.start();
                 }
             }
+        }else {
+            launchToken(activity,handler);
         }
-        if (appAccount == null) {
-            AcquireTokenParameters params = new AcquireTokenParameters.Builder()
-                    .withScopes(Arrays.asList(clientDetails.getScopes()))
-                    .withCallback(new AuthenticationCallback() {
-                        @Override
-                        public void onCancel() {
-                            handler.onCancel();
-                        }
 
-                        @Override
-                        public void onSuccess(IAuthenticationResult authenticationResult) {
-                            handleAuthSuccess(authenticationResult);
-                            handler.onSuccess(authenticationResult);
-                        }
-
-                        @Override
-                        public void onError(MsalException exception) {
-                            handler.onError(exception);
-                        }
-                    })
-                    .startAuthorizationFromActivity(activity)
-                    .withLoginHint(clientDetails.getUserName())
-                    .build();
-            mMsalClientApplication.acquireToken(params);
-        } else {
-            Thread thread = new Thread(() -> {
-                try {
-                    acquireTokenSilent(AppSettings.getAccount(appContext).getAADID(), handler);
-                } catch (MsalException e) {
-                    handler.onError(e);
-                } catch (InterruptedException e) {
-                    handler.onError(new MsalClientException("50002", "InterruptedException", e));
-                }
-            });
-            thread.start();
-        }
     }
 
     public void acquireToken(Activity activity, @NonNull final AuthenticationHandler handler, boolean mamEnrollment,
