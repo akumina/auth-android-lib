@@ -71,8 +71,8 @@ public final class AkuminaLib {
         MSALUtils.getInstance().createMAMEnrollmentManager(activity);
         MSALUtils.getInstance().acquireToken(activity,authenticationHandler, true, authFile,clientDetails, applicationListener);
     }
-    public  void signOut(Activity activity) throws Exception {
-        MSALUtils.getInstance().signOutAccount(activity);
+    public  void signOut(Activity activity,String userName) throws Exception {
+        MSALUtils.getInstance().signOutAccount(activity, userName);
     }
     public String getToken(TokenType tokenType){
         return MSALUtils.getInstance().getToken(tokenType);

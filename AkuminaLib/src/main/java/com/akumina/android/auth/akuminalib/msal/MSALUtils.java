@@ -36,6 +36,7 @@ import com.microsoft.identity.client.SilentAuthenticationCallback;
 import com.microsoft.identity.client.exception.MsalClientException;
 import com.microsoft.identity.client.exception.MsalException;
 import com.microsoft.identity.client.exception.MsalUiRequiredException;
+import com.microsoft.identity.common.internal.util.StringUtil;
 import com.microsoft.intune.mam.client.app.MAMComponents;
 import com.microsoft.intune.mam.policy.MAMEnrollmentManager;
 import com.microsoft.intune.mam.policy.MAMServiceAuthenticationCallback;
@@ -142,13 +143,20 @@ public class MSALUtils {
     private void initForToken(final AuthenticationHandler handler, Activity activity) {
         AppAccount appAccount = AppSettings.getAccount(appContext);
 
-        if(appAccount !=null) {
-            if(!appAccount.getUPN().equals(clientDetails.getUserName())) {
-                // Consider as different user logged in
-                loggingHandler.handleMessage("Different user " + appAccount.getUPN() + " -> " + clientDetails.getUserName(), false);
-                appAccount = null;
-            }else {
-                loggingHandler.handleMessage("Welcome back " + appAccount.getUPN() + " = " + clientDetails.getUserName(), false);
+        if (appAccount != null) {
+            if (!StringUtil.isEmpty(appAccount.getUPN())) {
+                if (!appAccount.getUPN().equals(clientDetails.getUserName())) {
+                    // Consider as different user logged in
+                    loggingHandler.handleMessage("Different user " + appAccount.getUPN() + " -> " + clientDetails.getUserName(), false);
+                    try {
+                        signOutAccount(activity, appAccount.getUPN());
+                    } catch (Exception e) {
+                        Log.e(MSALUtils.class.getName(), "initForToken: signOutAccount", e );
+                    }
+                    appAccount = null;
+                }else {
+                    loggingHandler.handleMessage("Welcome back " + appAccount.getUPN() + " = " + clientDetails.getUserName(), false);
+                }
             }
         }
         if (appAccount == null) {
@@ -159,11 +167,13 @@ public class MSALUtils {
                         public void onCancel() {
                             handler.onCancel();
                         }
+
                         @Override
                         public void onSuccess(IAuthenticationResult authenticationResult) {
                             handleAuthSuccess(authenticationResult);
                             handler.onSuccess(authenticationResult);
                         }
+
                         @Override
                         public void onError(MsalException exception) {
                             handler.onError(exception);
@@ -176,14 +186,14 @@ public class MSALUtils {
         } else {
             Thread thread = new Thread(() -> {
                 try {
-                    acquireTokenSilent( AppSettings.getAccount(appContext).getAADID(), handler);
+                    acquireTokenSilent(AppSettings.getAccount(appContext).getAADID(), handler);
                 } catch (MsalException e) {
                     handler.onError(e);
                 } catch (InterruptedException e) {
                     handler.onError(new MsalClientException("50002", "InterruptedException", e));
                 }
             });
-           thread.start();
+            thread.start();
         }
     }
 
@@ -195,7 +205,7 @@ public class MSALUtils {
         this.clientDetails = clientDetails;
         setAppContext(activity.getApplicationContext());
         this.mMsalClientApplication = null;
-        this.mSingleAccountApp =null;
+        this.mSingleAccountApp = null;
         initializeMsalClientApplication(applicationListener, handler, activity);
     }
 
@@ -305,9 +315,9 @@ public class MSALUtils {
 
             if (!configFile.isFileBased()) {
 
-                    this.mMsalClientApplication = PublicClientApplication.create(appContext, configFile.getFileId());
-                    applicationListener.onCreated(this.mMsalClientApplication);
-                    mSingleAccountApp = PublicClientApplication.createSingleAccountPublicClientApplication(appContext, configFile.getFileId());
+                this.mMsalClientApplication = PublicClientApplication.create(appContext, configFile.getFileId());
+                applicationListener.onCreated(this.mMsalClientApplication);
+                mSingleAccountApp = PublicClientApplication.createSingleAccountPublicClientApplication(appContext, configFile.getFileId());
 
                 LOGGER.log(Level.INFO, "mSingleAccountApp .. Init " + mSingleAccountApp);
                 updateLog("mSingleAccountApp .. Init " + mSingleAccountApp, false);
@@ -322,10 +332,11 @@ public class MSALUtils {
                         mMsalClientApplication = application;
                         applicationListener.onCreated(application);
 
-                            if (handler != null) {
-                                initForToken(handler, activity);
-                            }
+                        if (handler != null) {
+                            initForToken(handler, activity);
+                        }
                     }
+
                     @Override
                     public void onError(MsalException exception) {
                         Log.e("PublicClientApplication", "onError: ", exception);
@@ -407,7 +418,7 @@ public class MSALUtils {
         this.akuminaTokenCallback = akuminaTokenCallback;
     }
 
-    public void signOutAccount(Activity activity) throws Exception {
+    public void signOutAccount(Activity activity, String userName) throws Exception {
 
         if (appContext == null) {
             setAppContext(activity.getApplicationContext());
@@ -431,7 +442,7 @@ public class MSALUtils {
             }
         }, null, activity);
 
-        final IAccount account = getAccount(clientDetails.getUserName());
+        final IAccount account = getAccount(userName);
 
         if (account == null) {
             String error = "Failed to sign out account: No account found for " + clientDetails.getUserName();
