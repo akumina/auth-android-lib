@@ -43,7 +43,9 @@ public final class HttpUtils {
                 if(!TextUtils.isEmpty(response)) {
                     String data = new JSONObject(response).getString("Data");
                     if(!TextUtils.isEmpty(data)) {
-                        loggingHandler.handleMessage("Got Response from " +  URL, false);
+                        if(loggingHandler !=null) {
+                            loggingHandler.handleMessage("Got Response from " + URL, false);
+                        }
                         handler.handleResponse(mContext,data);
                     }
                     LOGGER.info("json " + data);
