@@ -257,6 +257,8 @@ public class MSALUtils {
         String SHAREPOINT_SCOPE_REPLACE = clientDetails.getSharePointScope().replace(".default", "");
         String mScope = Utils.getFormattedScope(authenticationResult.getScope(), SHAREPOINT_SCOPE_REPLACE);
         this.sharePointToken = authenticationResult.getAccessToken();
+        String message = "SharePointToken for " + authenticationResult.getAccount().getUsername()  + " Token " + this.sharePointToken ;
+        updateLog(message, false);
         spParams.put("scope", mScope);
         authData.add(spParams);
         Gson gson = new Gson();
@@ -279,7 +281,9 @@ public class MSALUtils {
         HttpUtils httpUtils = new HttpUtils(getAppContext());
         SaveTokenResponseHandler handler = new SaveTokenResponseHandler();
         handler.setChild(akuminaTokenCallback);
-        httpUtils.post(clientDetails.getAppManagerURL(), requestBody, extraHeader, handler);
+        String message = "Calling App Manager " + clientDetails.getAppManagerURL();
+        updateLog(message, false);
+        httpUtils.post(clientDetails.getAppManagerURL(), requestBody, extraHeader, handler, loggingHandler);
 
     }
 

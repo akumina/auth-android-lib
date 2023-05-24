@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.akumina.android.auth.akuminalib.http.ResponseHandler;
+import com.akumina.android.auth.akuminalib.listener.LoggingHandler;
 import com.android.volley.NetworkResponse;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -33,7 +34,7 @@ public final class HttpUtils {
     public HttpUtils(Context context)  {
         this.mContext = context;
     }
-    public void post(String URL, String requestBody, Map<String, String> extraHeader, ResponseHandler handler) {
+    public void post(String URL, String requestBody, Map<String, String> extraHeader, ResponseHandler handler, LoggingHandler loggingHandler) {
         RequestQueue requestQueue = Volley.newRequestQueue(mContext);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, response -> {
@@ -42,6 +43,7 @@ public final class HttpUtils {
                 if(!TextUtils.isEmpty(response)) {
                     String data = new JSONObject(response).getString("Data");
                     if(!TextUtils.isEmpty(data)) {
+                        loggingHandler.handleMessage("Got Response from " +  URL, false);
                         handler.handleResponse(mContext,data);
                     }
                     LOGGER.info("json " + data);

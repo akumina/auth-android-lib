@@ -5,8 +5,6 @@ import android.content.Context;
 import android.os.Build;
 import android.provider.Settings;
 
-import androidx.annotation.WorkerThread;
-
 import com.akumina.android.auth.akuminalib.beans.ClientDetails;
 import com.akumina.android.auth.akuminalib.data.AppAccount;
 import com.akumina.android.auth.akuminalib.data.AppSettings;
@@ -130,6 +128,6 @@ public final class AkuminaLib {
         extraHeader.put("Authorization", "Bearer " + AppSettings.readAccessToken(mContext));
 
         HttpUtils httpUtils = new HttpUtils(mContext);
-        httpUtils.post(Constants.POST_FCM_TOKEN, requestBody, extraHeader, responseHandler);
+        httpUtils.post(Constants.POST_FCM_TOKEN, requestBody, extraHeader, responseHandler, null);
     }
 }
