@@ -31,6 +31,7 @@ import com.microsoft.identity.client.ICurrentAccountResult;
 import com.microsoft.identity.client.IMultipleAccountPublicClientApplication;
 import com.microsoft.identity.client.IPublicClientApplication;
 import com.microsoft.identity.client.ISingleAccountPublicClientApplication;
+import com.microsoft.identity.client.Prompt;
 import com.microsoft.identity.client.PublicClientApplication;
 import com.microsoft.identity.client.SilentAuthenticationCallback;
 import com.microsoft.identity.client.exception.MsalClientException;
@@ -162,6 +163,7 @@ public class MSALUtils {
                 })
                 .startAuthorizationFromActivity(activity)
                 .withLoginHint(clientDetails.getUserName())
+                .withPrompt(Prompt.LOGIN)
                 .build();
         mMsalClientApplication.acquireToken(params);
     }
