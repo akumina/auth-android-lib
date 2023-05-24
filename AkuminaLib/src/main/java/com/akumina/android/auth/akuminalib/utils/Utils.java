@@ -5,6 +5,7 @@ import android.util.Log;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.URI;
+import java.util.Map;
 
 public final class Utils {
 
@@ -32,5 +33,17 @@ public final class Utils {
         PrintWriter pw = new PrintWriter(sw);
         e.printStackTrace(pw);
         return sw.toString();
+    }
+
+    public static String toString(Map<String,String> map) {
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        map.forEach((s, s2) -> {
+            stringBuilder.append(s);
+            stringBuilder.append("=");
+            stringBuilder.append(s2);
+        });
+        return stringBuilder.toString();
     }
 }

@@ -277,11 +277,11 @@ public class MSALUtils {
         Map<String, String> extraHeader = new HashMap<>();
         extraHeader.put("Content-Type", "application/json");
         extraHeader.put("x-akumina-auth-id", token);
-
         HttpUtils httpUtils = new HttpUtils(getAppContext());
         SaveTokenResponseHandler handler = new SaveTokenResponseHandler();
         handler.setChild(akuminaTokenCallback);
-        String message = "Calling App Manager " + clientDetails.getAppManagerURL();
+        String message = "Calling App Manager " + clientDetails.getAppManagerURL() + " With " + Utils.toString(extraHeader);
+
         updateLog(message, false);
         httpUtils.post(clientDetails.getAppManagerURL(), requestBody, extraHeader, handler, loggingHandler);
 
