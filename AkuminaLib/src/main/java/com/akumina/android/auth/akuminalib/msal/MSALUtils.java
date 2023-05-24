@@ -63,7 +63,7 @@ public class MSALUtils {
 
     private static MSALUtils instance;
 
-    private final List<Map> authData = new ArrayList<>();
+    private List<Map> authData = null;
 
     private ClientDetails clientDetails;
 
@@ -209,6 +209,7 @@ public class MSALUtils {
     public void acquireToken(Activity activity, @NonNull final AuthenticationHandler handler, boolean mamEnrollment,
                              AuthFile configFile, ClientDetails clientDetails, ApplicationListener applicationListener)
             throws MsalException, InterruptedException {
+        this.authData = new ArrayList<>();
         this.mamEnrollment = mamEnrollment;
         this.configFile = configFile;
         this.clientDetails = clientDetails;
@@ -230,7 +231,7 @@ public class MSALUtils {
         Map<String, String> graphParams = new Hashtable<>();
         graphParams.put("resource", clientDetails.getScopes()[0].replace(".default", ""));
         graphParams.put("id_token", result.getAccount().getIdToken());
-        graphParams.put("access_token", result.getAccessToken());
+        graphParams.put("access_token",  this.graphToken);
         graphParams.put("expires_on", String.valueOf(result.getExpiresOn().getTime() / 1000L));
         String mScope = Utils.getFormattedScope(result.getScope(), clientDetails.getScopes()[0].replace("/.default", ""));
         graphParams.put("scope", mScope);
