@@ -165,42 +165,43 @@ public class MSALUtils {
                 .build();
         mMsalClientApplication.acquireToken(params);
     }
-
+    private void startSilentMode(AppAccount appAccount, AuthenticationHandler handler) {
+        loggingHandler.handleMessage("Welcome back " + appAccount.getUPN() + " = " + clientDetails.getUserName(), false);
+        Thread thread = new Thread(() -> {
+            try {
+                acquireTokenSilent(AppSettings.getAccount(appContext).getAADID(), handler);
+            } catch (MsalException e) {
+                handler.onError(e);
+            } catch (InterruptedException e) {
+                handler.onError(new MsalClientException("50002", "InterruptedException", e));
+            }
+        });
+        thread.start();
+    }
     private void initForToken(final AuthenticationHandler handler, Activity activity) {
         AppAccount appAccount = AppSettings.getAccount(appContext);
 
-        if (appAccount != null) {
-            if (!StringUtil.isEmpty(appAccount.getUPN())) {
-                if (!appAccount.getUPN().equals(clientDetails.getUserName())) {
-                    // Consider as different user logged in
-                    loggingHandler.handleMessage("Different user " + appAccount.getUPN() + " -> " + clientDetails.getUserName(), false);
-                    AppAccount finalAppAccount = appAccount;
-                    Thread thread = new Thread(() -> {
-                        try {
-                            signOutAccount(activity, finalAppAccount.getAADID());
-                            launchToken(activity,handler);
-                        } catch (Exception e) {
-                            Log.e(MSALUtils.class.getName(), "initForToken: signOutAccount", e );
-                            launchToken(activity,handler);
-                        }
-                    });
-                    thread.start();
-                }else {
-                    loggingHandler.handleMessage("Welcome back " + appAccount.getUPN() + " = " + clientDetails.getUserName(), false);
-                    Thread thread = new Thread(() -> {
-                        try {
-                            acquireTokenSilent(AppSettings.getAccount(appContext).getAADID(), handler);
-                        } catch (MsalException e) {
-                            handler.onError(e);
-                        } catch (InterruptedException e) {
-                            handler.onError(new MsalClientException("50002", "InterruptedException", e));
-                        }
-                    });
-                    thread.start();
-                }
-            }
-        }else {
+        if(appAccount == null) {
             launchToken(activity,handler);
+        }else {
+            if(appAccount.getTenantID().equals(clientDetails.getTenantId())
+                    && appAccount.getUPN().equals(clientDetails.getUserName())) {
+                startSilentMode(appAccount, handler);
+            }else {
+                // Consider as different user logged in
+                loggingHandler.handleMessage("Different user " + appAccount.getUPN() + ":" + appAccount.getTenantID() + " -> " + clientDetails.getUserName() + ":" + clientDetails.getTenantId(), false);
+                AppAccount finalAppAccount = appAccount;
+                Thread thread = new Thread(() -> {
+                    try {
+                        signOutAccount(activity, finalAppAccount.getAADID());
+                        launchToken(activity,handler);
+                    } catch (Exception e) {
+                        Log.e(MSALUtils.class.getName(), "initForToken: signOutAccount", e );
+                        launchToken(activity,handler);
+                    }
+                });
+                thread.start();
+            }
         }
 
     }

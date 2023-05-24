@@ -55,7 +55,7 @@ public final class HttpUtils {
 
             Log.i("VOLLEY", response);
         }, error -> {
-            LOGGER.info("VolleyError " + error.getMessage());
+            LOGGER.info("VolleyError " + Utils.toString(error));
             handler.handleError(error);
         }) {
             @Override
