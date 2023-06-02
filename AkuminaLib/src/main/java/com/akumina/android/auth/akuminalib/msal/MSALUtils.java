@@ -124,6 +124,7 @@ public class MSALUtils {
                 .forAccount(account)
                 .fromAuthority(account.getAuthority())
                 .withScopes(Arrays.asList(clientDetails.getScopes()))
+                .withResource("https://graph.microsoft.com/")
                 .withCallback(new SilentAuthenticationCallback() {
                     @Override
                     public void onSuccess(IAuthenticationResult authenticationResult) {
@@ -164,6 +165,7 @@ public class MSALUtils {
                 .startAuthorizationFromActivity(activity)
                 .withLoginHint(clientDetails.getUserName())
                 .withPrompt(Prompt.LOGIN)
+                .withResource("https://graph.microsoft.com/")
                 .build();
         mMsalClientApplication.acquireToken(params);
     }
@@ -448,7 +450,6 @@ public class MSALUtils {
         initializeMsalClientApplication(new ApplicationListener() {
             @Override
             public void onCreated(IPublicClientApplication application) {
-
             }
 
             @Override
