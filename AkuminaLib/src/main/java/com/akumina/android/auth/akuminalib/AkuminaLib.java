@@ -99,10 +99,9 @@ public final class AkuminaLib {
         ;
     }
 
-    public void saveFCMToken(String token, Activity mActivity, String appId, String versionName, ResponseHandler responseHandler) {
+    public void saveFCMToken(String token, Activity mActivity,  String appId, String versionName, ResponseHandler responseHandler) {
         Context mContext = mActivity.getApplicationContext();
 
-        AppAccount mUserAccount = AppSettings.getAccount(mContext);
         String uuid =  Settings.Secure.getString(mActivity.getContentResolver(), Settings.Secure.ANDROID_ID);
         String osInfo = "OS : android"
                 + ", manufacturer : " + Build.MANUFACTURER
@@ -111,8 +110,8 @@ public final class AkuminaLib {
                 + ", versionRelease : " + Build.VERSION.RELEASE;
 
         Map<String, String> params = new Hashtable<>();
-        params.put("tenant_id",  mUserAccount.getTenantID());
-        params.put("upn", mUserAccount.getUPN());
+        params.put("tenant_id", clientDetails.getTenantId());
+        params.put("upn", clientDetails.getUserName());
         params.put("bundle_id", appId);
         params.put("bundle_version", versionName);
         params.put("id", uuid);
