@@ -380,10 +380,6 @@ public class MSALUtils {
         return mamEnrollmentManager;
     }
 
-//    public void setMamEnrollmentManager(MAMEnrollmentManager mamEnrollmentManager) {
-//        this.mamEnrollmentManager = mamEnrollmentManager;
-//    }
-
     public Context getAppContext() {
         return appContext;
     }
@@ -439,13 +435,6 @@ public class MSALUtils {
         if (appContext == null) {
             setAppContext(activity.getApplicationContext());
         }
-//       if(ValidationUtils.isNull(clientDetails)) {
-//           throw new IllegalAccessError("Client Details is null");
-//        }
-//        if(ValidationUtils.isNull(applicationListener)) {
-//            throw new Exception("Application is null");
-//        }
-
         initializeMsalClientApplication(new ApplicationListener() {
             @Override
             public void onCreated(IPublicClientApplication application) {
@@ -457,15 +446,6 @@ public class MSALUtils {
             }
         }, null, activity);
 
-//        final IAccount account = getAccount(userName);
-//
-//        if (account == null) {
-//            String error = "Failed to sign out account: No account found for " + clientDetails.getUserName();
-//            updateLog(error, true);
-//            LOGGER.warning(error);
-//            return;
-//        }
-
         if (mMsalClientApplication instanceof IMultipleAccountPublicClientApplication) {
             IMultipleAccountPublicClientApplication multiAccountPCA =
                     (IMultipleAccountPublicClientApplication) mMsalClientApplication;
@@ -473,11 +453,9 @@ public class MSALUtils {
            for(IAccount account: accounts) {
                multiAccountPCA.removeAccount(account);
            }
-//            multiAccountPCA.removeAccount(account);
         } else {
             ISingleAccountPublicClientApplication singleAccountPCA =
                     (ISingleAccountPublicClientApplication) mMsalClientApplication;
-
             singleAccountPCA.signOut();
         }
     }

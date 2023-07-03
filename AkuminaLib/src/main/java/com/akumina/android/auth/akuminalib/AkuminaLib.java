@@ -99,7 +99,8 @@ public final class AkuminaLib {
         ;
     }
 
-    public void saveFCMToken(String token, Activity mActivity,  String appId, String versionName, ResponseHandler responseHandler) {
+    public void saveFCMToken(String token, Activity mActivity,  String appId, String versionName, ResponseHandler responseHandler,
+                             String postFcmURL) {
         Context mContext = mActivity.getApplicationContext();
 
         String uuid =  Settings.Secure.getString(mActivity.getContentResolver(), Settings.Secure.ANDROID_ID);
@@ -127,6 +128,6 @@ public final class AkuminaLib {
         extraHeader.put("Authorization", "Bearer " + AppSettings.readAccessToken(mContext));
 
         HttpUtils httpUtils = new HttpUtils(mContext);
-        httpUtils.post(Constants.POST_FCM_TOKEN, requestBody, extraHeader, responseHandler, null);
+        httpUtils.post(postFcmURL, requestBody, extraHeader, responseHandler, null);
     }
 }
