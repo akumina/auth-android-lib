@@ -187,8 +187,10 @@ public class MSALUtils {
         if(appAccount == null) {
             launchToken(activity,handler);
         }else {
-            if(appAccount.getAuthority().startsWith(clientDetails.getAuthority())
-                    && appAccount.getUPN().equals(clientDetails.getUserName())) {
+            boolean found = appAccount.getAuthority().startsWith(clientDetails.getAuthority())
+                    && appAccount.getUPN().equals(clientDetails.getUserName());
+            loggingHandler.handleMessage("Last logged user equals with current user " + found, false);;
+            if(found) {
                 startSilentMode(appAccount, handler);
             }else {
                 // Consider as different user logged in
