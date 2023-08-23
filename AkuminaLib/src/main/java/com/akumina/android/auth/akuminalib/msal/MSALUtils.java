@@ -187,7 +187,7 @@ public class MSALUtils {
         if(appAccount == null) {
             launchToken(activity,handler);
         }else {
-            if(appAccount.getAuthority().equals(clientDetails.getAuthority())
+            if(appAccount.getAuthority().startsWith(clientDetails.getAuthority())
                     && appAccount.getUPN().equals(clientDetails.getUserName())) {
                 startSilentMode(appAccount, handler);
             }else {
