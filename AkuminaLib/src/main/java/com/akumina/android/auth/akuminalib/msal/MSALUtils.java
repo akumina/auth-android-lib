@@ -108,15 +108,13 @@ public class MSALUtils {
         return mamEnrollmentManager;
     }
 
-    private void acquireTokenSilent(String aadId, @NonNull final AuthenticationHandler handler)
+    private void acquireTokenSilent(Activity activity, String aadId, @NonNull final AuthenticationHandler handler)
             throws MsalException, InterruptedException {
 
         final IAccount account = getAccount(aadId);
         if (account == null) {
             LOGGER.severe("Failed to acquire token: no account found for " + aadId);
-            handler.onError(
-                    new MsalUiRequiredException(MsalUiRequiredException.NO_ACCOUNT_FOUND, "no account found for " + aadId));
-
+            launchToken(activity,handler);
             return;
         }
 
@@ -168,11 +166,11 @@ public class MSALUtils {
                 .build();
         mMsalClientApplication.acquireToken(params);
     }
-    private void startSilentMode(AppAccount appAccount, AuthenticationHandler handler) {
+    private void startSilentMode(Activity activity,AppAccount appAccount, AuthenticationHandler handler) {
         loggingHandler.handleMessage("Welcome back " + appAccount.getUPN() + " = " + clientDetails.getUserName(), false);
         Thread thread = new Thread(() -> {
             try {
-                acquireTokenSilent(AppSettings.getAccount(appContext).getAADID(), handler);
+                acquireTokenSilent(activity,AppSettings.getAccount(appContext).getAADID(), handler);
             } catch (MsalException e) {
                 handler.onError(e);
             } catch (InterruptedException e) {
@@ -191,7 +189,7 @@ public class MSALUtils {
                     && appAccount.getUPN().equals(clientDetails.getUserName());
             loggingHandler.handleMessage("Last logged user equals with current user " + found, false);;
             if(found) {
-                startSilentMode(appAccount, handler);
+                startSilentMode(activity,appAccount, handler);
             }else {
                 // Consider as different user logged in
                 loggingHandler.handleMessage("Different user " + appAccount.getUPN() + ":" + appAccount.getTenantID() + " -> " + clientDetails.getUserName() + ":" + clientDetails.getTenantId(), false);
