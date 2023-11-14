@@ -26,6 +26,8 @@ import com.akumina.android.auth.akuminalib.utils.Utils;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.microsoft.identity.client.SilentAuthenticationCallback;
+import com.microsoft.identity.client.exception.MsalException;
 
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -129,5 +131,9 @@ public final class AkuminaLib {
 
         HttpUtils httpUtils = new HttpUtils(mContext);
         httpUtils.post(postFcmURL, requestBody, extraHeader, responseHandler, null);
+    }
+
+    public String getEntaToken(String upn, String aadId, String resourceId, SilentAuthenticationCallback callback) throws MsalException, InterruptedException {
+        return  MSALUtils.getInstance().getEntaToken(upn, aadId, resourceId, callback);
     }
 }
