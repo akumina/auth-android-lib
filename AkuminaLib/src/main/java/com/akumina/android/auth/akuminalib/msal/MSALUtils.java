@@ -35,6 +35,7 @@ import com.microsoft.identity.client.PublicClientApplication;
 import com.microsoft.identity.client.SilentAuthenticationCallback;
 import com.microsoft.identity.client.exception.MsalClientException;
 import com.microsoft.identity.client.exception.MsalException;
+import com.microsoft.identity.client.exception.MsalUiRequiredException;
 import com.microsoft.intune.mam.client.app.MAMComponents;
 import com.microsoft.intune.mam.policy.MAMEnrollmentManager;
 import com.microsoft.intune.mam.policy.MAMServiceAuthenticationCallback;
@@ -312,7 +313,29 @@ public class MSALUtils {
                     }
                 });
     }
+    public String getEntaToken(String upn, String aadId, String resourceId, SilentAuthenticationCallback callback) throws MsalException, InterruptedException {
+        loggingHandler.handleMessage("Calling Enta Token for user " + upn, false);
+        final String[] scopes = {resourceId + "/.default"};
+        final IAccount account = getAccount(aadId);
+        if (account == null) {
+            callback.onError(
+                    new MsalUiRequiredException(MsalUiRequiredException.NO_ACCOUNT_FOUND, "no account found for " + aadId));
+            return "";
+        }
+        AcquireTokenSilentParameters params =
+                new AcquireTokenSilentParameters.Builder()
+                        .forAccount(account)
+                        .fromAuthority(account.getAuthority())
+                        .withScopes(Arrays.asList(scopes))
+                        .withCallback(callback)
+                        .build();
 
+
+        String result =  mMsalClientApplication.acquireTokenSilent(params).toString();
+
+        loggingHandler.handleMessage("Got Enta Result  " + result, false);
+        return result;
+    }
     private synchronized void initializeMsalClientApplication(ApplicationListener applicationListener, AuthenticationHandler handler, Activity activity)
             throws MsalException, InterruptedException {
         if (ValidationUtils.isNull(appContext)) {
